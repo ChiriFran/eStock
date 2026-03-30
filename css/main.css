@@ -557,7 +557,7 @@ body.modal-open {
 }
 
 /* Video */
-.plan-video-wrapper video {
+.plan-video-wrapper img {
   width: 100%;
   height: auto;
   display: block;
