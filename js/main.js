@@ -141,7 +141,7 @@ videoTl
       ease: "power2.out",
       stagger: 0.08,
     },
-    "-=0.3"
+    "-=0.3",
   )
   .from(
     ".videoMockup img",
@@ -152,7 +152,7 @@ videoTl
       ease: "power3.out",
       onComplete: startVideoFloating,
     },
-    "-=0.45"
+    "-=0.45",
   );
 
 /* floating suave del mockup */
@@ -242,7 +242,7 @@ gsap.utils.toArray(".scrollItem").forEach((item) => {
         duration: 0.4,
         ease: "power2.out",
       },
-      "-=0.3"
+      "-=0.3",
     )
     .to(
       media,
@@ -253,7 +253,7 @@ gsap.utils.toArray(".scrollItem").forEach((item) => {
         duration: 0.6,
         ease: "power3.out",
       },
-      "-=0.4"
+      "-=0.4",
     );
 });
 
@@ -337,7 +337,7 @@ ScrollTrigger.matchMedia({
             duration: 0.35,
             ease: "power2.out",
           },
-          "-=0.25"
+          "-=0.25",
         )
         .to(
           media,
@@ -348,11 +348,125 @@ ScrollTrigger.matchMedia({
             duration: 0.55,
             ease: "power3.out",
           },
-          "-=0.35"
+          "-=0.35",
         );
     });
   },
 });
+
+/* =========================
+   CLIENTES SECTION
+========================= */
+gsap.registerPlugin(ScrollTrigger);
+
+/* Desktop (con SplitType como tu hero) */
+ScrollTrigger.matchMedia({
+  "(min-width: 769px)": function () {
+    // dividir texto
+    const clientesTitle = new SplitType(".clientes-title", {
+      types: "words",
+    });
+
+    const clientesSubtitle = new SplitType(".clientes-subtitle", {
+      types: "words",
+    });
+
+    const clientesTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".clientes-section",
+        start: "top 80%",
+        once: true,
+      },
+    });
+
+    clientesTl
+      // título
+      .from(clientesTitle.words, {
+        opacity: 0,
+        y: 35,
+        stagger: 0.06,
+        duration: 0.7,
+        ease: "power3.out",
+      })
+      // subtítulo
+      .from(
+        clientesSubtitle.words,
+        {
+          opacity: 0,
+          y: 20,
+          stagger: 0.02,
+          duration: 0.5,
+          ease: "power2.out",
+        },
+        "-=0.4",
+      )
+      // logos
+      .from(
+        ".clientes-logos a",
+        {
+          opacity: 0,
+          y: 40,
+          scale: 0.94,
+          stagger: 0.15,
+          duration: 0.7,
+          ease: "expo.out",
+        },
+        "-=0.3",
+      );
+  },
+
+  /* 📱 Mobile (más liviano, sin SplitType) */
+  "(max-width: 768px)": function () {
+    gsap.from(".clientes-title, .clientes-subtitle", {
+      opacity: 0,
+      y: 20,
+      duration: 0.5,
+      stagger: 0.1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".clientes-section",
+        start: "top 85%",
+        once: true,
+      },
+    });
+
+    gsap.from(".clientes-logos a", {
+      opacity: 0,
+      y: 20,
+      stagger: 0.12,
+      duration: 0.5,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: ".clientes-logos",
+        start: "top 85%",
+        once: true,
+      },
+    });
+  },
+});
+
+/* =========================
+   HOVER LOGOS (DESKTOP ONLY)
+========================= */
+if (window.matchMedia("(hover: hover)").matches) {
+  document.querySelectorAll(".clientes-logos img").forEach((logo) => {
+    logo.addEventListener("mouseenter", () => {
+      gsap.to(logo, {
+        scale: 1.06,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    });
+
+    logo.addEventListener("mouseleave", () => {
+      gsap.to(logo, {
+        scale: 1,
+        duration: 0.3,
+        ease: "power2.out",
+      });
+    });
+  });
+}
 
 /* footer */
 gsap.from(".footerContainer h2", {

@@ -171,6 +171,114 @@ body {
   font-size: 1.15rem;
 }
 
+.clientes-section {
+  position: relative;
+  padding: 5rem 2rem;
+  text-align: center;
+  background-color: var(--clr-white);
+}
+
+.clientes-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  opacity: 0.1;
+  background-image: url("../img/background-hero-circle-&-dots.png");
+  background-size: contain;
+  background-position: center;
+
+  mix-blend-mode: multiply; /* 🔥 más integrado */
+
+  pointer-events: none;
+  z-index: 100;
+}
+
+.clientes-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.clientes-title {
+  font-family: var(--ff-titles);
+  font-size: 4rem;
+  font-weight: 900;
+  color: var(--clr-light-blue);
+  margin-bottom: 0.5rem;
+}
+
+.clientes-subtitle {
+  font-family: var(--ff-texts);
+  font-size: 1.4rem;
+  opacity: 0.7;
+  margin-bottom: 2.5rem;
+}
+
+.clientes-logos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.clientes-logos img {
+  max-width: 240px;
+  height: auto;
+  opacity: 0.8;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.clientes-logos img:last-of-type {
+  filter: brightness(0);
+}
+
+.clientes-logos img:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .clientes-section {
+    padding: 3rem 1rem;
+  }
+
+  /* 👇 decorativo más liviano */
+  .clientes-section::after {
+    opacity: 0.05;
+    background-size: 120%;
+    background-position: center;
+  }
+
+  .clientes-title {
+    font-size: 2.2rem;
+    line-height: 1.1;
+  }
+
+  .clientes-subtitle {
+    font-size: 1rem;
+    padding: 0 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  /* 👇 logos mejor distribuidos */
+  .clientes-logos {
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .clientes-logos img {
+    max-width: 120px;
+  }
+  
+  .clientes-section::after {
+    background-size: 140%;
+    background-position: top;
+    opacity: 0.04;
+  }
+}
 /* =====================
    STATS
 ===================== */
@@ -256,7 +364,9 @@ body {
   line-height: 1.4;
 
   color: var(--clr-light-blue);
-  transition: color 0.4s ease, box-shadow 0.3s ease;
+  transition:
+    color 0.4s ease,
+    box-shadow 0.3s ease;
   will-change: transform;
 }
 
@@ -289,7 +399,9 @@ body {
 
   pointer-events: none;
 
-  transition: opacity 0.4s ease, transform 0.5s ease;
+  transition:
+    opacity 0.4s ease,
+    transform 0.5s ease;
 
   filter: brightness(0);
 
@@ -380,7 +492,9 @@ body {
   color: var(--clr-white);
 
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 /* CTA en hover / active */
@@ -698,7 +812,9 @@ body.modal-open {
   width: 100%;
   max-width: 520px;
   transform: translateY(0);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
   filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.25));
 }
 
@@ -867,7 +983,8 @@ body.modal-open {
 }
 
 .scrollItem:nth-child(1) .scrollMedia::before {
-  background-image: radial-gradient(
+  background-image:
+    radial-gradient(
       circle at center,
       rgba(48, 127, 224, 0.35),
       transparent 60%
@@ -1040,7 +1157,10 @@ body.modal-open {
   font-family: var(--ff-texts);
   line-height: 1.4;
   padding: 2rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border 0.3s ease;
   backdrop-filter: blur(15px);
 }
 
@@ -1108,7 +1228,9 @@ body.modal-open {
 
   pointer-events: none;
 
-  transition: opacity 0.4s ease, transform 0.8s ease;
+  transition:
+    opacity 0.4s ease,
+    transform 0.8s ease;
   opacity: 0.3;
   z-index: -10;
 }
@@ -1177,7 +1299,9 @@ body.modal-open {
   overflow: hidden;
   padding: 0 10px;
   opacity: 0.9;
-  transition: max-height 0.4s ease, padding 0.4s ease;
+  transition:
+    max-height 0.4s ease,
+    padding 0.4s ease;
 }
 
 .faqItem.active .faqAnswer {
@@ -1452,7 +1576,10 @@ body.modal-open {
   .requirement-card {
     line-height: 1.4;
     padding: 0.5rem 1rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease,
+      border 0.3s ease;
   }
 
   /* preguntas frecuentes */
