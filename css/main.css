@@ -242,13 +242,13 @@ body {
 
 @media (max-width: 768px) {
   .clientes-section {
-    padding: 3rem 1rem;
+    padding: 6rem 1rem;
   }
 
   /* 👇 decorativo más liviano */
   .clientes-section::after {
-    opacity: 0.05;
-    background-size: 120%;
+    opacity: 0.1;
+    background-size: 100%;
     background-position: center;
   }
 
@@ -273,11 +273,6 @@ body {
     max-width: 120px;
   }
   
-  .clientes-section::after {
-    background-size: 140%;
-    background-position: top;
-    opacity: 0.04;
-  }
 }
 /* =====================
    STATS
