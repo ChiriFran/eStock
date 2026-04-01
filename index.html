@@ -1,804 +1,773 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/normalice.css" />
-    <link rel="stylesheet" href="./css/main.css" />
 
-    <link rel="icon" href="./img/eStockFavicon.png" />
-    <title>eStock</title>
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/normalice.css" />
+  <link rel="stylesheet" href="./css/main.css" />
 
-  <body>
-    <header class="header">
-      <p class="logo">eStock</p>
+  <link rel="icon" href="./img/eStockFavicon.png" />
+  <title>eStock</title>
+</head>
 
-      <!-- Botón hamburguesa -->
-      <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
+<body>
+  <header class="header">
+    <p class="logo">eStock</p>
+
+    <!-- Botón hamburguesa -->
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <!-- Menú -->
+    <nav class="menu" id="menu">
+      <ul class="menu-list">
+        <li class="menu-item"><a href="./index.html">Inicio</a></li>
+        <li class="menu-item"><a href="#planes">Planes Web</a></li>
+        <li class="menu-item">
+          <a href="https://wa.me/541130504515?text=Hola%20eStock%2C%20quiero%20info%20sobre%20sus%20planes."
+            target="_blank" class="contactoBtn">
+            Contactar
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <!-- CAPA DECORATIVA FULL VIEWPORT -->
+      <div class="hero-deco-layer">
+        <img class="hero-deco hero-deco-bottom-left" src="./img/background-hero-circle-&-dots.png" alt="" />
+        <img class="hero-deco hero-deco-top-right" src="./img/background-hero-circle-&-dots.png" alt="" />
       </div>
 
-      <!-- Menú -->
-      <nav class="menu" id="menu">
-        <ul class="menu-list">
-          <li class="menu-item"><a href="./index.html">Inicio</a></li>
-          <li class="menu-item"><a href="#planes">Planes Web</a></li>
-          <li class="menu-item">
-            <a
-              href="https://wa.me/541130504515?text=Hola%20eStock%2C%20quiero%20info%20sobre%20sus%20planes."
-              target="_blank"
-              class="contactoBtn"
-            >
-              Contactar
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </header>
+      <!-- CONTENIDO CENTRADO -->
+      <div class="hero-content">
+        <div class="hero-intro">
+          <div class="hero-image">
+            <img src="./img/eStockFavicon.png" alt="" />
+          </div>
 
-    <main>
-      <section class="hero">
-        <!-- CAPA DECORATIVA FULL VIEWPORT -->
-        <div class="hero-deco-layer">
-          <img
-            class="hero-deco hero-deco-bottom-left"
-            src="./img/background-hero-circle-&-dots.png"
-            alt=""
-          />
-          <img
-            class="hero-deco hero-deco-top-right"
-            src="./img/background-hero-circle-&-dots.png"
-            alt=""
-          />
+          <div class="hero-info">
+            <h1 class="hero-title">Somos eStock</h1>
+            <p class="hero-text">
+              Una plataforma ecommerce completa para vender online y
+              administrar tu negocio desde un solo lugar, sin comisiones y con
+              herramientas profesionales que se adaptan a vos.
+            </p>
+          </div>
         </div>
 
-        <!-- CONTENIDO CENTRADO -->
-        <div class="hero-content">
-          <div class="hero-intro">
-            <div class="hero-image">
-              <img src="./img/eStockFavicon.png" alt="" />
-            </div>
-
-            <div class="hero-info">
-              <h1 class="hero-title">Somos eStock</h1>
-              <p class="hero-text">
-                Una plataforma ecommerce completa para vender online y
-                administrar tu negocio desde un solo lugar, sin comisiones y con
-                herramientas profesionales que se adaptan a vos.
-              </p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <div>
+              <p class="number">$40.000.000</p>
+              <p class="text">Vendidos en la app</p>
+              <div class="hover-bg"></div>
             </div>
           </div>
 
-          <div class="hero-stats">
-            <div class="hero-stat">
-              <div>
-                <p class="number">$40.000.000</p>
-                <p class="text">Vendidos en la app</p>
-                <div class="hover-bg"></div>
-              </div>
-            </div>
-
-            <div class="hero-stat center">
-              <div>
-                <p class="number">+350</p>
-                <p class="text">Pedidos exitosos</p>
-                <div class="hover-bg"></div>
-              </div>
-            </div>
-
-            <div class="hero-stat last">
-              <div>
-                <p class="number">2</p>
-                <p class="text">Tiendas activas</p>
-                <div class="hover-bg"></div>
-              </div>
+          <div class="hero-stat center">
+            <div>
+              <p class="number">+350</p>
+              <p class="text">Pedidos exitosos</p>
+              <div class="hover-bg"></div>
             </div>
           </div>
+
+          <div class="hero-stat last">
+            <div>
+              <p class="number">2</p>
+              <p class="text">Tiendas activas</p>
+              <div class="hover-bg"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="hero-services-container" id="planes">
+      <div class="hero-services-item">
+        <span>PLan Starter</span>
+        <p class="hero-services-item-price">
+          50 USD / Mes
+          <span class="price-discount">25% anual</span>
+        </p>
+        Pensado para todos quienes comienzan a vender online. Incluye una
+        tienda optimizada, panel administrativo, gestión de productos y
+        pedidos, y recepción de pedidos por WhatsApp. Una solución simple,
+        profesional y lo mas importante, sin comisiones de venta para iniciar
+        tu ecommerce.
+        <span class="open-starter-modal">Ver Info</span>
+      </div>
+      <div class="hero-services-item">
+        <span>Plan Pro</span>
+        <p class="hero-services-item-price">
+          75 USD / Mes
+          <span class="price-discount">25% anual</span>
+        </p>
+        Pensado para negocios que buscan automatizar y escalar sus ventas,
+        este plan ofrece un ecommerce completo con un panel administrativo
+        profesional que permite gestionar productos, stock y pedidos de forma
+        centralizada. Integra pagos con Mercado Pago en conjunto con emails
+        automaticos para mayor transparencia. Asi como tambien podes enviar
+        emails con novedades, promociones y descuentos a tus clientes desde tu
+        panel administrativo.
+        <span class="open-pro-modal" data-plan="pro">Ver Info</span>
+      </div>
+    </div>
+  </main>
+
+  <section class="videoContainer">
+    <div class="videoContent">
+      <div class="videoText">
+        <h2>Transformá tu catálogo en una tienda online.</h2>
+        <p>
+          Ecommerce profesional, automatizado y listo para escalar. Pagos,
+          stock y pedidos en un solo lugar.
+        </p>
+      </div>
+
+      <div class="videoMockup">
+        <img src="./img/mockup-phone.png" alt="Mockup ecommerce" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <section class="clientes-section">
+    <div class="clientes-container">
+      <h2 class="clientes-title">Negocios que confían en nosotros</h2>
+
+      <p class="clientes-subtitle">
+        Gracias por elegirnos para impulsar sus ventas online
+      </p>
+
+      <div class="clientes-logos">
+        <a href="https://www.buenosaireswax.com/" target="_blank">
+          <img src="./img/bawax-logo.png" alt="Buenos Aires Wax Vinyl Store" />
+        </a>
+        <a href="https://www.detroitclassicgallery.com/" target="_blank">
+          <img src="./img/logoMobile.png" alt="Detroit Classic Galery Record" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="scrollSection" aria-label="Características del ecommerce">
+    <div class="scrollInner">
+      <section class="scrollItem">
+        <div class="scrollContent">
+          <span class="scrollTag">Ecommerce</span>
+          <h2 class="scrollTitle">
+            Ecommerce<br />
+            listo para<br />
+            vender
+          </h2>
+          <p class="scrollText">
+            Todo lo que necesitás para empezar a vender online desde el día
+            uno:
+          </p>
+
+          <ul class="scrollFeatures">
+            <li>
+              <span class="featureIcon"></span>
+              <span class="featureText"><strong>SEO</strong> optimizado para tu marca y
+                productos</span>
+            </li>
+            <li>
+              <span class="featureIcon"></span>
+              <span class="featureText">Rendimiento de <strong>carga rápida</strong> y estable</span>
+            </li>
+            <li>
+              <span class="featureIcon"></span>
+              <span class="featureText">Alojamiento incluido hasta
+                <strong> 100 GB </strong>mensuales</span>
+            </li>
+            <li>
+              <span class="featureIcon"></span>
+              <span class="featureText">Dominio provisorio <strong>tutienda.vercel.app</strong></span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="scrollMedia">
+          <img src="./img/scroll-section-ecom.png" alt="Ecommerce listo para vender" loading="lazy" />
         </div>
       </section>
 
-      <div class="hero-services-container" id="planes">
-        <div class="hero-services-item">
-          <span>PLan Starter</span>
-          <p class="hero-services-item-price">
-            50 USD / Mes
-            <span class="price-discount">25% anual</span>
+      <section class="scrollItem">
+        <div class="scrollContent">
+          <span class="scrollTag">Dashboard</span>
+          <h2 class="scrollTitle">
+            Panel<br />
+            administrativo<br />
+            simple
+          </h2>
+          <p class="scrollText">
+            Gestioná pedidos, productos, stock y mas desde un panel claro y
+            fácil de usar.
           </p>
-          Pensado para todos quienes comienzan a vender online. Incluye una
-          tienda optimizada, panel administrativo, gestión de productos y
-          pedidos, y recepción de pedidos por WhatsApp. Una solución simple,
-          profesional y lo mas importante, sin comisiones de venta para iniciar
-          tu ecommerce.
-          <span class="open-starter-modal">Ver Info</span>
+
+          <ul class="scrollFeatures">
+            <li>
+              <span class="featureIcon"></span>
+              <span class="featureText"><strong>Estadísticas generales</strong> de la tienda en
+                tiempo real</span>
+            </li>
+            <li>
+              <span class="featureIcon"></span>
+              <span class="featureText"><strong>Registro</strong> completo de ventas, productos y
+                movimientos</span>
+            </li>
+            <li>
+              <span class="featureIcon"></span>
+              <span class="featureText"><strong>Edición</strong> simple de productos, precios y
+                stock</span>
+            </li>
+            <li>
+              <span class="featureIcon"></span>
+              <span class="featureText">
+                Gestión de pedidos con acceso rápido a WhatsApp y descarga de
+                <strong>comprobantes de envío</strong>
+              </span>
+            </li>
+          </ul>
         </div>
-        <div class="hero-services-item">
-          <span>Plan Pro</span>
-          <p class="hero-services-item-price">
-            75 USD / Mes
-            <span class="price-discount">25% anual</span>
+
+        <div class="scrollMedia">
+          <img src="./img/scroll-section-admin.png" alt="Panel administrativo" loading="lazy" />
+        </div>
+      </section>
+
+      <section class="scrollItem">
+        <div class="scrollContent">
+          <span class="scrollTag">Checkout - Plan Pro</span>
+          <h2 class="scrollTitle">
+            Pagos online<br />
+            automáticos
+          </h2>
+          <p class="scrollText">
+            Integración con pasarela de pago de Mercadopago para cobrar de
+            forma rapida, segura y automática.
           </p>
-          Pensado para negocios que buscan automatizar y escalar sus ventas,
-          este plan ofrece un ecommerce completo con un panel administrativo
-          profesional que permite gestionar productos, stock y pedidos de forma
-          centralizada. Integra pagos con Mercado Pago en conjunto con emails
-          automaticos para mayor transparencia. Asi como tambien podes enviar
-          emails con novedades, promociones y descuentos a tus clientes desde tu
-          panel administrativo.
-          <span class="open-pro-modal" data-plan="pro">Ver Info</span>
-        </div>
-      </div>
-    </main>
 
-    <section class="videoContainer">
-      <div class="videoContent">
-        <div class="videoText">
-          <h2>Transformá tu catálogo en una tienda online.</h2>
-          <p>
-            Ecommerce profesional, automatizado y listo para escalar. Pagos,
-            stock y pedidos en un solo lugar.
+          <ul class="scrollFeatures">
+            <li>
+              <span class="featureIcon"></span>
+              <span class="featureText"><strong>Pasarela de pago</strong> integrada con Mercado
+                Pago</span>
+            </li>
+            <li>
+              <span class="featureIcon"></span>
+              <span class="featureText"><strong>Control automático</strong> del estado de los
+                pagos</span>
+            </li>
+            <li>
+              <span class="featureIcon"></span>
+              <span class="featureText">
+                <strong>Actualización de stock</strong> automática para una
+                operación segura y robusta
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="scrollMedia">
+          <img src="./img/scroll-section-pay.png" alt="Pagos online" loading="lazy" />
+        </div>
+      </section>
+
+      <section class="scrollItem">
+        <div class="scrollContent">
+          <span class="scrollTag">Email Marketing - Plan Pro</span>
+          <h2 class="scrollTitle">
+            Emails automáticos<br />
+            & Email Marketing
+          </h2>
+          <p class="scrollText">
+            Automatizá emails en compras, bienvenidas, eventos especiales y
+            mas, para fidelizar clientes y mantenerte en contacto de manera
+            simple y rapida.
           </p>
+
+          <ul class="scrollFeatures">
+            <li>
+              <span class="featureIcon"></span>
+              <span class="featureText">
+                <strong>Correos automáticos</strong> para compras, bienvenidas
+                y notificaciones clave
+              </span>
+            </li>
+            <li>
+              <span class="featureIcon"></span>
+              <span class="featureText">
+                Envío de campañas promocionales y newsletters a tus clientes
+              </span>
+            </li>
+            <li>
+              <span class="featureIcon"></span>
+              <span class="featureText">
+                Hasta <strong>2.000 correos mensuales incluidos</strong>
+              </span>
+            </li>
+            <li>
+              <span class="featureIcon"></span>
+              <span class="featureText">
+                Plan extensible hasta <strong>20.000 correos</strong> por
+                <strong>USD 25 / mes</strong>
+              </span>
+            </li>
+          </ul>
         </div>
 
-        <div class="videoMockup">
-          <img
-            src="./img/mockup-phone.png"
-            alt="Mockup ecommerce"
-            loading="lazy"
-          />
+        <div class="scrollMedia">
+          <img src="./img/scroll-section-email.png" alt="Email marketing" loading="lazy" />
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
+  </section>
 
-    <section class="clientes-section">
-      <div class="clientes-container">
-        <h2 class="clientes-title">Negocios que confían en nosotros</h2>
-
-        <p class="clientes-subtitle">
-          Gracias por elegirnos para impulsar sus ventas online
+  <section class="requirements-section">
+    <div class="requirements-container">
+      <div class="requirements-header">
+        <h2>¿Qué necesitamos para crear tu tienda online?</h2>
+        <p>
+          Para desarrollar una tienda ecommerce funcional, coherente y lista
+          para vender, estos son los elementos básicos con los que debemos
+          contar desde el inicio.
         </p>
-
-        <div class="clientes-logos">
-          <a href="https://www.buenosaireswax.com/" target="_blank">
-            <img
-              src="./img/bawax-logo.png"
-              alt="Buenos Aires Wax Vinyl Store"
-            />
-          </a>
-          <a href="https://www.detroitclassicgallery.com/" target="_blank">
-            <img
-              src="./img/logoMobile.png"
-              alt="Detroit Classic Galery Record"
-            />
-          </a>
-        </div>
       </div>
-    </section>
 
-    <section class="scrollSection" aria-label="Características del ecommerce">
-      <div class="scrollInner">
-        <section class="scrollItem">
-          <div class="scrollContent">
-            <span class="scrollTag">Ecommerce</span>
-            <h2 class="scrollTitle">
-              Ecommerce<br />
-              listo para<br />
-              vender
-            </h2>
-            <p class="scrollText">
-              Todo lo que necesitás para empezar a vender online desde el día
-              uno:
-            </p>
-
-            <ul class="scrollFeatures">
-              <li>
-                <span class="featureIcon"></span>
-                <span class="featureText"
-                  ><strong>SEO</strong> optimizado para tu marca y
-                  productos</span
-                >
-              </li>
-              <li>
-                <span class="featureIcon"></span>
-                <span class="featureText"
-                  >Rendimiento de <strong>carga rápida</strong> y estable</span
-                >
-              </li>
-              <li>
-                <span class="featureIcon"></span>
-                <span class="featureText"
-                  >Alojamiento incluido hasta
-                  <strong> 100 GB </strong>mensuales</span
-                >
-              </li>
-              <li>
-                <span class="featureIcon"></span>
-                <span class="featureText"
-                  >Dominio provisorio <strong>tutienda.vercel.app</strong></span
-                >
-              </li>
-            </ul>
-          </div>
-
-          <div class="scrollMedia">
-            <img
-              src="./img/scroll-section-ecom.png"
-              alt="Ecommerce listo para vender"
-              loading="lazy"
-            />
-          </div>
-        </section>
-
-        <section class="scrollItem">
-          <div class="scrollContent">
-            <span class="scrollTag">Dashboard</span>
-            <h2 class="scrollTitle">
-              Panel<br />
-              administrativo<br />
-              simple
-            </h2>
-            <p class="scrollText">
-              Gestioná pedidos, productos, stock y mas desde un panel claro y
-              fácil de usar.
-            </p>
-
-            <ul class="scrollFeatures">
-              <li>
-                <span class="featureIcon"></span>
-                <span class="featureText"
-                  ><strong>Estadísticas generales</strong> de la tienda en
-                  tiempo real</span
-                >
-              </li>
-              <li>
-                <span class="featureIcon"></span>
-                <span class="featureText"
-                  ><strong>Registro</strong> completo de ventas, productos y
-                  movimientos</span
-                >
-              </li>
-              <li>
-                <span class="featureIcon"></span>
-                <span class="featureText"
-                  ><strong>Edición</strong> simple de productos, precios y
-                  stock</span
-                >
-              </li>
-              <li>
-                <span class="featureIcon"></span>
-                <span class="featureText">
-                  Gestión de pedidos con acceso rápido a WhatsApp y descarga de
-                  <strong>comprobantes de envío</strong>
-                </span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="scrollMedia">
-            <img
-              src="./img/scroll-section-admin.png"
-              alt="Panel administrativo"
-              loading="lazy"
-            />
-          </div>
-        </section>
-
-        <section class="scrollItem">
-          <div class="scrollContent">
-            <span class="scrollTag">Checkout - Plan Pro</span>
-            <h2 class="scrollTitle">
-              Pagos online<br />
-              automáticos
-            </h2>
-            <p class="scrollText">
-              Integración con pasarela de pago de Mercadopago para cobrar de
-              forma rapida, segura y automática.
-            </p>
-
-            <ul class="scrollFeatures">
-              <li>
-                <span class="featureIcon"></span>
-                <span class="featureText"
-                  ><strong>Pasarela de pago</strong> integrada con Mercado
-                  Pago</span
-                >
-              </li>
-              <li>
-                <span class="featureIcon"></span>
-                <span class="featureText"
-                  ><strong>Control automático</strong> del estado de los
-                  pagos</span
-                >
-              </li>
-              <li>
-                <span class="featureIcon"></span>
-                <span class="featureText">
-                  <strong>Actualización de stock</strong> automática para una
-                  operación segura y robusta
-                </span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="scrollMedia">
-            <img
-              src="./img/scroll-section-pay.png"
-              alt="Pagos online"
-              loading="lazy"
-            />
-          </div>
-        </section>
-
-        <section class="scrollItem">
-          <div class="scrollContent">
-            <span class="scrollTag">Email Marketing - Plan Pro</span>
-            <h2 class="scrollTitle">
-              Emails automáticos<br />
-              & Email Marketing
-            </h2>
-            <p class="scrollText">
-              Automatizá emails en compras, bienvenidas, eventos especiales y
-              mas, para fidelizar clientes y mantenerte en contacto de manera
-              simple y rapida.
-            </p>
-
-            <ul class="scrollFeatures">
-              <li>
-                <span class="featureIcon"></span>
-                <span class="featureText">
-                  <strong>Correos automáticos</strong> para compras, bienvenidas
-                  y notificaciones clave
-                </span>
-              </li>
-              <li>
-                <span class="featureIcon"></span>
-                <span class="featureText">
-                  Envío de campañas promocionales y newsletters a tus clientes
-                </span>
-              </li>
-              <li>
-                <span class="featureIcon"></span>
-                <span class="featureText">
-                  Hasta <strong>2.000 correos mensuales incluidos</strong>
-                </span>
-              </li>
-              <li>
-                <span class="featureIcon"></span>
-                <span class="featureText">
-                  Plan extensible hasta <strong>20.000 correos</strong> por
-                  <strong>USD 25 / mes</strong>
-                </span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="scrollMedia">
-            <img
-              src="./img/scroll-section-email.png"
-              alt="Email marketing"
-              loading="lazy"
-            />
-          </div>
-        </section>
-      </div>
-    </section>
-
-    <section class="requirements-section">
-      <div class="requirements-container">
-        <div class="requirements-header">
-          <h2>¿Qué necesitamos para crear tu tienda online?</h2>
+      <div class="requirements-grid">
+        <div class="requirement-card">
+          <span class="requirement-icon">1</span>
+          <h3>Logo</h3>
           <p>
-            Para desarrollar una tienda ecommerce funcional, coherente y lista
-            para vender, estos son los elementos básicos con los que debemos
-            contar desde el inicio.
+            Es la base de tu identidad visual. Permite que tu marca sea
+            reconocible, confiable y coherente en toda la tienda.
           </p>
         </div>
 
-        <div class="requirements-grid">
-          <div class="requirement-card">
-            <span class="requirement-icon">1</span>
-            <h3>Logo</h3>
-            <p>
-              Es la base de tu identidad visual. Permite que tu marca sea
-              reconocible, confiable y coherente en toda la tienda.
-            </p>
-          </div>
-
-          <div class="requirement-card">
-            <span class="requirement-icon">2</span>
-            <h3>Fotos de producto</h3>
-            <p>
-              Las imágenes son el principal disparador de compra. Un buen
-              producto necesita mostrarse de forma clara y profesional.
-            </p>
-          </div>
-
-          <div class="requirement-card">
-            <span class="requirement-icon">3</span>
-            <h3>Tipografías</h3>
-            <p>
-              Definen el tono de tu marca y mejoran la lectura. Una buena
-              tipografía eleva el diseño sin agregar ruido.
-            </p>
-          </div>
-
-          <div class="requirement-card">
-            <span class="requirement-icon">4</span>
-            <h3>Paleta de colores</h3>
-            <p>
-              Organiza la interfaz y guía al usuario. Una paleta definida
-              convierte una web en una marca.
-            </p>
-          </div>
+        <div class="requirement-card">
+          <span class="requirement-icon">2</span>
+          <h3>Fotos de producto</h3>
+          <p>
+            Las imágenes son el principal disparador de compra. Un buen
+            producto necesita mostrarse de forma clara y profesional.
+          </p>
         </div>
 
-        <div class="requirements-footer">
+        <div class="requirement-card">
+          <span class="requirement-icon">3</span>
+          <h3>Tipografías</h3>
           <p>
-            En <strong>eStock</strong> construimos tiendas online pensadas para
-            vender desde el primer día y crecer sin rediseños futuros.
+            Definen el tono de tu marca y mejoran la lectura. Una buena
+            tipografía eleva el diseño sin agregar ruido.
+          </p>
+        </div>
+
+        <div class="requirement-card">
+          <span class="requirement-icon">4</span>
+          <h3>Paleta de colores</h3>
+          <p>
+            Organiza la interfaz y guía al usuario. Una paleta definida
+            convierte una web en una marca.
           </p>
         </div>
       </div>
-    </section>
 
-    <section class="faqSection" id="faq">
-      <div class="faqContainer">
-        <span class="faqTag">Soporte</span>
-        <h2 class="faqTitle">Preguntas frecuentes</h2>
-        <p class="faqSubtitle">
-          Todo lo que necesitás saber para empezar a vender con tu ecommerce.
+      <div class="requirements-footer">
+        <p>
+          En <strong>eStock</strong> construimos tiendas online pensadas para
+          vender desde el primer día y crecer sin rediseños futuros.
         </p>
-
-        <div class="faqList">
-          <div class="faqItem">
-            <button class="faqQuestion">
-              ¿Qué es este servicio de ecommerce por alquiler mensual?
-              <span class="faqIcon">+</span>
-            </button>
-            <div class="faqAnswer">
-              Es una tienda online lista para vender que alquilás por mes.
-              Incluye diseño basico, sistema de productos y ventas y panel de
-              control (dashboard), sin pagar un desarrollo costoso.
-            </div>
-          </div>
-          <div class="faqItem">
-            <button class="faqQuestion">
-              ¿En cuánto tiempo puedo empezar a vender?
-              <span class="faqIcon">+</span>
-            </button>
-            <div class="faqAnswer">
-              En pocos días tenés tu tienda funcionando, sin procesos largos ni
-              complicados. Tenes los requerimientos necesarios justo arriba.
-            </div>
-          </div>
-
-          <div class="faqItem">
-            <button class="faqQuestion">
-              ¿Mi tienda es realmente mía?
-              <span class="faqIcon">+</span>
-            </button>
-            <div class="faqAnswer">
-              La tienda es tuya para usarla mientras tengas el plan activo. Vos
-              cargás productos, precios, fotos y manejás todo desde tu panel.
-            </div>
-          </div>
-
-          <div class="faqItem">
-            <button class="faqQuestion">
-              ¿La plataforma cobra comisión por venta?
-              <span class="faqIcon">+</span>
-            </button>
-            <div class="faqAnswer">
-              No cobramos comisión por venta. Solo pagás tu plan mensual o anual
-              con un gran descuento.
-            </div>
-          </div>
-
-          <div class="faqItem">
-            <button class="faqQuestion">
-              ¿Qué puedo hacer desde el panel de control?
-              <span class="faqIcon">+</span>
-            </button>
-            <div class="faqAnswer">
-              Podes ver en todo momento, desde tu pc o celular, estadisticas
-              generales y reportes. ventas o pedidos, gestionar productos y
-              pedidos, cargar productos o cambiar precios y stock, enviar
-              correos promocionales a tus clientes y mas.
-            </div>
-          </div>
-
-          <div class="faqItem">
-            <button class="faqQuestion">
-              ¿Qué pasa si supero los límites gratuitos?
-              <span class="faqIcon">+</span>
-            </button>
-            <div class="faqAnswer">
-              Nosotros monitoreamos el uso y te avisamos antes de que llegues al
-              límite, para que puedas decidir con tiempo si querés escalar.
-              Escalás solo cuando lo necesitás, sin pagar de más antes de
-              tiempo.
-            </div>
-          </div>
-        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <footer class="footerContainer">
-      <h2>
-        Es momento de profesionalizar <br />
-        tu presencia digital.
-      </h2>
-      <p>
-        <a
-          href="https://wa.me/541130504515?text=Hola%20eStock%2C%20quiero%20info%20sobre%20sus%20planes."
-          target="_blank"
-          class="contactoBtn"
-        >
-          ¡Comenzar ahora!
-        </a>
+  <section class="faqSection" id="faq">
+    <div class="faqContainer">
+      <span class="faqTag">Soporte</span>
+      <h2 class="faqTitle">Preguntas frecuentes</h2>
+      <p class="faqSubtitle">
+        Todo lo que necesitás saber para empezar a vender con tu ecommerce.
       </p>
-    </footer>
 
-    <div class="modal-overlay" id="starterOverlay"></div>
-
-    <div class="modal" id="starterModal">
-      <button class="modal-close" id="closeStarter">✕</button>
-
-      <div class="modal-content">
-        <!-- CONTENIDO PLAN STARTER -->
-
-        <h2 class="plan-title">Plan Starter</h2>
-        <p class="plan-subtitle">¿Qué incluye este plan?</p>
-
-        <div class="plan-section">
-          <h3>1. Página web profesional</h3>
-          <ul>
-            <li>
-              Optimización SEO básica para mejorar visibilidad en buscadores.
-            </li>
-            <li>Alto rendimiento y tiempos de carga optimizados.</li>
-            <li>
-              Alojamiento incluido hasta <strong>100 GB mensuales</strong>.
-            </li>
-            <li>
-              Dominio provisorio incluido.
-              <br />
-              <small>
-                Te asesoramos sin costo si querés adquirir tu propio dominio.
-              </small>
-            </li>
-          </ul>
+      <div class="faqList">
+        <div class="faqItem">
+          <button class="faqQuestion">
+            ¿Qué es este servicio de ecommerce por alquiler mensual?
+            <span class="faqIcon">+</span>
+          </button>
+          <div class="faqAnswer">
+            Es una tienda online lista para vender que alquilás por mes.
+            Incluye diseño basico, sistema de productos y ventas y panel de
+            control (dashboard), sin pagar un desarrollo costoso.
+          </div>
+        </div>
+        <div class="faqItem">
+          <button class="faqQuestion">
+            ¿En cuánto tiempo puedo empezar a vender?
+            <span class="faqIcon">+</span>
+          </button>
+          <div class="faqAnswer">
+            En pocos días tenés tu tienda funcionando, sin procesos largos ni
+            complicados. Tenes los requerimientos necesarios justo arriba.
+          </div>
         </div>
 
-        <div class="plan-section">
-          <h3>2. Panel administrativo</h3>
-          <ul>
-            <li>
-              <strong>Estadísticas generales:</strong>
-              total de pedidos, ventas, ticket promedio, productos más vendidos
-              y días con mayor volumen de ventas.
-            </li>
-            <li>
-              <strong>Gestión de pedidos:</strong>
-              acceso a todos los datos del cliente, envío, productos y total de
-              la compra.
-            </li>
-            <li>
-              Botones de contacto rápido por WhatsApp para atención inmediata al
-              cliente.
-            </li>
-            <li>
-              Descarga de comprobantes de envío en PDF para una gestión
-              logística más ágil.
-            </li>
-            <li>
-              Exportación de pedidos en <strong>PDF y Excel</strong>
-              para control y reportes.
-            </li>
-            <li>
-              <strong>Módulo de productos:</strong>
-              edición rápida de nombre, precios, stock y toda la información
-              necesaria.
-            </li>
-          </ul>
+        <div class="faqItem">
+          <button class="faqQuestion">
+            ¿Mi tienda es realmente mía?
+            <span class="faqIcon">+</span>
+          </button>
+          <div class="faqAnswer">
+            La tienda es tuya para usarla mientras tengas el plan activo. Vos
+            cargás productos, precios, fotos y manejás todo desde tu panel.
+          </div>
         </div>
 
-        <div class="plan-section">
-          <h3>3. Identidad visual y contenido</h3>
-          <ul>
-            <li>
-              Adaptación de tu manual de marca o del contenido que ya tengas.
-            </li>
-            <li>Integración de logo, tipografías y colores corporativos.</li>
-            <li>
-              Optimización del contenido de la página de inicio para una
-              presentación clara y profesional.
-            </li>
-          </ul>
+        <div class="faqItem">
+          <button class="faqQuestion">
+            ¿La plataforma cobra comisión por venta?
+            <span class="faqIcon">+</span>
+          </button>
+          <div class="faqAnswer">
+            No cobramos comisión por venta. Solo pagás tu plan mensual o anual
+            con un gran descuento.
+          </div>
         </div>
 
-        <div class="plan-section">
-          <h3>4. Carga inicial de productos</h3>
-          <ul>
-            <li>Carga de hasta <strong>100 productos</strong>.</li>
-            <li>
-              Los productos deben enviarse en un archivo Excel, siguiendo un
-              modelo provisto por nosotros.
-            </li>
-          </ul>
+        <div class="faqItem">
+          <button class="faqQuestion">
+            ¿Qué puedo hacer desde el panel de control?
+            <span class="faqIcon">+</span>
+          </button>
+          <div class="faqAnswer">
+            Podes ver en todo momento, desde tu pc o celular, estadisticas
+            generales y reportes. ventas o pedidos, gestionar productos y
+            pedidos, cargar productos o cambiar precios y stock, enviar
+            correos promocionales a tus clientes y mas.
+          </div>
         </div>
 
-        <div class="plan-section">
-          <h3>5. Configuración general de la tienda</h3>
-          <ul>
-            <li>
-              Configuración completa de la tienda y sus parámetros principales.
-            </li>
-            <li>
-              Ajuste y puesta en marcha de las herramientas necesarias para el
-              correcto funcionamiento del ecommerce.
-            </li>
-          </ul>
-        </div>
-
-        <div class="plan-section plan-video-section">
-          <h3>6. Vista real del Plan Starter</h3>
-
-          <p class="plan-video-text">
-            Ejemplo real de navegación y uso de una tienda creada con el Plan
-            Starter. Mostramos la experiencia del usuario y el rendimiento
-            general del sitio.
-          </p>
-
-          <div class="plan-video-wrapper">
-            <img src="./img/bawax.png" alt="" />
+        <div class="faqItem">
+          <button class="faqQuestion">
+            ¿Qué pasa si supero los límites gratuitos?
+            <span class="faqIcon">+</span>
+          </button>
+          <div class="faqAnswer">
+            Nosotros monitoreamos el uso y te avisamos antes de que llegues al
+            límite, para que puedas decidir con tiempo si querés escalar.
+            Escalás solo cuando lo necesitás, sin pagar de más antes de
+            tiempo.
           </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <div class="modal-overlay" id="proOverlay"></div>
+  <footer class="footerContainer">
+    <h2>
+      Es momento de profesionalizar <br />
+      tu presencia digital.
+    </h2>
+    <p>
+      <a href="https://wa.me/541130504515?text=Hola%20eStock%2C%20quiero%20info%20sobre%20sus%20planes." target="_blank"
+        class="contactoBtn">
+        ¡Comenzar ahora!
+      </a>
+    </p>
+  </footer>
 
-    <div class="modal" id="proModal">
-      <button class="modal-close" id="closePro">✕</button>
+  <div class="modal-overlay" id="starterOverlay"></div>
 
-      <div class="modal-content">
-        <!-- CONTENIDO PLAN PRO -->
-        <!-- CONTENIDO PLAN STARTER -->
+  <div class="modal" id="starterModal">
+    <button class="modal-close" id="closeStarter">✕</button>
 
-        <h2 class="plan-title">Plan Pro</h2>
-        <p class="plan-subtitle">¿Qué incluye este plan?</p>
+    <div class="modal-content">
+      <!-- CONTENIDO PLAN STARTER -->
 
-        <div class="plan-section">
-          <h3>1. Página web profesional</h3>
-          <ul>
-            <li>
-              Optimización SEO básica para mejorar visibilidad en buscadores.
-            </li>
-            <li>Alto rendimiento y tiempos de carga optimizados.</li>
-            <li>
-              Alojamiento incluido hasta <strong>100 GB mensuales</strong>.
-            </li>
-            <li>
-              Dominio provisorio incluido.
-              <br />
-              <small>
-                Te asesoramos sin costo si querés adquirir tu propio dominio.
-              </small>
-            </li>
-          </ul>
-        </div>
+      <h2 class="plan-title">Plan Starter</h2>
+      <p class="plan-subtitle">¿Qué incluye este plan?</p>
 
-        <div class="plan-section">
-          <h3>2. Panel administrativo</h3>
-          <ul>
-            <li>
-              <strong>Estadísticas generales:</strong>
-              total de pedidos, ventas, ticket promedio, productos más vendidos
-              y días con mayor volumen de ventas.
-            </li>
-            <li>
-              <strong>Gestión de pedidos:</strong>
-              acceso a todos los datos del cliente, envío, productos y total de
-              la compra.
-            </li>
-            <li>
-              Botones de contacto rápido por WhatsApp para atención inmediata al
-              cliente.
-            </li>
-            <li>
-              Descarga de comprobantes de envío en PDF para una gestión
-              logística más ágil.
-            </li>
-            <li>
-              Exportación de pedidos en <strong>PDF y Excel</strong>
-              para control y reportes.
-            </li>
-            <li>
-              <strong>Módulo de productos:</strong>
-              edición rápida de nombre, precios, stock y toda la información
-              necesaria.
-            </li>
-          </ul>
-        </div>
+      <div class="plan-section">
+        <h3>1. Página web profesional</h3>
+        <ul>
+          <li>
+            Optimización SEO básica para mejorar visibilidad en buscadores.
+          </li>
+          <li>Alto rendimiento y tiempos de carga optimizados.</li>
+          <li>
+            Alojamiento incluido hasta <strong>100 GB mensuales</strong>.
+          </li>
+          <li>
+            Dominio provisorio incluido.
+            <br />
+            <small>
+              Te asesoramos sin costo si querés adquirir tu propio dominio.
+            </small>
+          </li>
+        </ul>
+      </div>
 
-        <div class="plan-section">
-          <h3>3. Identidad visual y contenido</h3>
-          <ul>
-            <li>
-              Adaptación de tu manual de marca o del contenido que ya tengas.
-            </li>
-            <li>Integración de logo, tipografías y colores corporativos.</li>
-            <li>
-              Optimización del contenido de la página de inicio para una
-              presentación clara y profesional.
-            </li>
-          </ul>
-        </div>
+      <div class="plan-section">
+        <h3>2. Panel administrativo</h3>
+        <ul>
+          <li>
+            <strong>Estadísticas generales:</strong>
+            total de pedidos, ventas, ticket promedio, productos más vendidos
+            y días con mayor volumen de ventas.
+          </li>
+          <li>
+            <strong>Gestión de pedidos:</strong>
+            acceso a todos los datos del cliente, envío, productos y total de
+            la compra.
+          </li>
+          <li>
+            Botones de contacto rápido por WhatsApp para atención inmediata al
+            cliente.
+          </li>
+          <li>
+            Descarga de comprobantes de envío en PDF para una gestión
+            logística más ágil.
+          </li>
+          <li>
+            Exportación de pedidos en <strong>PDF y Excel</strong>
+            para control y reportes.
+          </li>
+          <li>
+            <strong>Módulo de productos:</strong>
+            edición rápida de nombre, precios, stock y toda la información
+            necesaria.
+          </li>
+        </ul>
+      </div>
 
-        <div class="plan-section">
-          <h3>4. Carga inicial de productos</h3>
-          <ul>
-            <li>Carga de hasta <strong>100 productos</strong>.</li>
-            <li>
-              Los productos deben enviarse en un archivo Excel, siguiendo un
-              modelo provisto por nosotros.
-            </li>
-          </ul>
-        </div>
+      <div class="plan-section">
+        <h3>3. Identidad visual y contenido</h3>
+        <ul>
+          <li>
+            Adaptación de tu manual de marca o del contenido que ya tengas.
+          </li>
+          <li>Integración de logo, tipografías y colores corporativos.</li>
+          <li>
+            Optimización del contenido de la página de inicio para una
+            presentación clara y profesional.
+          </li>
+        </ul>
+      </div>
 
-        <div class="plan-section">
-          <h3>5. Pagos online</h3>
-          <ul>
-            <li>
-              Checkout de compra con Mercadopago para integrar compras robustas
-              y notificaciones automaticas.
-            </li>
-            <li>
-              Gestion de stock automatica con Mercadopago a travez de
-              notificaciones de comrpa.
-            </li>
-          </ul>
-        </div>
+      <div class="plan-section">
+        <h3>4. Carga inicial de productos</h3>
+        <ul>
+          <li>Carga de hasta <strong>100 productos</strong>.</li>
+          <li>
+            Los productos deben enviarse en un archivo Excel, siguiendo un
+            modelo provisto por nosotros.
+          </li>
+        </ul>
+      </div>
 
-        <div class="plan-section">
-          <h3>6. Emails automáticos & Email Marketing</h3>
-          <ul>
-            <li>
-              Automatiza tus eventos con emails automaticos en compras
-              suscricpiones y mas.
-            </li>
-            <li>
-              Difusion de correos para mantener a tus clientes al tanto de las
-              novedades y descuentos.
-            </li>
-          </ul>
-        </div>
+      <div class="plan-section">
+        <h3>5. Configuración general de la tienda</h3>
+        <ul>
+          <li>
+            Configuración completa de la tienda y sus parámetros principales.
+          </li>
+          <li>
+            Ajuste y puesta en marcha de las herramientas necesarias para el
+            correcto funcionamiento del ecommerce.
+          </li>
+        </ul>
+      </div>
 
-        <div class="plan-section plan-video-section">
-          <h3>7. Vista real del Plan Pro</h3>
+      <div class="plan-section plan-video-section">
+        <h3>6. Vista real del Plan Starter</h3>
 
-          <p class="plan-video-text">
-            Ejemplo real de navegación y uso de una tienda creada con el Plan
-            Pro. Mostramos la experiencia del usuario y el rendimiento general
-            del sitio.
-          </p>
+        <p class="plan-video-text">
+          Ejemplo real de navegación y uso de una tienda creada con el Plan
+          Starter. Mostramos la experiencia del usuario y el rendimiento
+          general del sitio.
+        </p>
 
-          <div class="plan-video-wrapper">
-            <img src="./img/dcg.png" alt="" />
+        <div class="plan-video-wrapper" data-pvw-slider>
+          <div class="pvw-slider">
+            <button class="pvw-nav pvw-prev">‹</button>
+
+            <div class="pvw-slides">
+              <img class="pvw-slide" src="./img/bawax.png" alt="" />
+              <img class="pvw-slide" src="./img/bawax-admin.png" alt="" />
+            </div>
+
+            <button class="pvw-nav pvw-next">›</button>
           </div>
         </div>
       </div>
     </div>
+  </div>
 
-    <script src="https://unpkg.com/split-type"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-    <script src="./js/main.js"></script>
-    <script src="./js/nav.js"></script>
-    <script src="./js/modal.js"></script>
-    <script src="./js/acordeonFaq.js" defer></script>
-  </body>
+  <div class="modal-overlay" id="proOverlay"></div>
+
+  <div class="modal" id="proModal">
+    <button class="modal-close" id="closePro">✕</button>
+
+    <div class="modal-content">
+      <!-- CONTENIDO PLAN PRO -->
+      <!-- CONTENIDO PLAN STARTER -->
+
+      <h2 class="plan-title">Plan Pro</h2>
+      <p class="plan-subtitle">¿Qué incluye este plan?</p>
+
+      <div class="plan-section">
+        <h3>1. Página web profesional</h3>
+        <ul>
+          <li>
+            Optimización SEO básica para mejorar visibilidad en buscadores.
+          </li>
+          <li>Alto rendimiento y tiempos de carga optimizados.</li>
+          <li>
+            Alojamiento incluido hasta <strong>100 GB mensuales</strong>.
+          </li>
+          <li>
+            Dominio provisorio incluido.
+            <br />
+            <small>
+              Te asesoramos sin costo si querés adquirir tu propio dominio.
+            </small>
+          </li>
+        </ul>
+      </div>
+
+      <div class="plan-section">
+        <h3>2. Panel administrativo</h3>
+        <ul>
+          <li>
+            <strong>Estadísticas generales:</strong>
+            total de pedidos, ventas, ticket promedio, productos más vendidos
+            y días con mayor volumen de ventas.
+          </li>
+          <li>
+            <strong>Gestión de pedidos:</strong>
+            acceso a todos los datos del cliente, envío, productos y total de
+            la compra.
+          </li>
+          <li>
+            Botones de contacto rápido por WhatsApp para atención inmediata al
+            cliente.
+          </li>
+          <li>
+            Descarga de comprobantes de envío en PDF para una gestión
+            logística más ágil.
+          </li>
+          <li>
+            Exportación de pedidos en <strong>PDF y Excel</strong>
+            para control y reportes.
+          </li>
+          <li>
+            <strong>Módulo de productos:</strong>
+            edición rápida de nombre, precios, stock y toda la información
+            necesaria.
+          </li>
+        </ul>
+      </div>
+
+      <div class="plan-section">
+        <h3>3. Identidad visual y contenido</h3>
+        <ul>
+          <li>
+            Adaptación de tu manual de marca o del contenido que ya tengas.
+          </li>
+          <li>Integración de logo, tipografías y colores corporativos.</li>
+          <li>
+            Optimización del contenido de la página de inicio para una
+            presentación clara y profesional.
+          </li>
+        </ul>
+      </div>
+
+      <div class="plan-section">
+        <h3>4. Carga inicial de productos</h3>
+        <ul>
+          <li>Carga de hasta <strong>100 productos</strong>.</li>
+          <li>
+            Los productos deben enviarse en un archivo Excel, siguiendo un
+            modelo provisto por nosotros.
+          </li>
+        </ul>
+      </div>
+
+      <div class="plan-section">
+        <h3>5. Pagos online</h3>
+        <ul>
+          <li>
+            Checkout de compra con Mercadopago para integrar compras robustas
+            y notificaciones automaticas.
+          </li>
+          <li>
+            Gestion de stock automatica con Mercadopago a travez de
+            notificaciones de comrpa.
+          </li>
+        </ul>
+      </div>
+
+      <div class="plan-section">
+        <h3>6. Emails automáticos & Email Marketing</h3>
+        <ul>
+          <li>
+            Automatiza tus eventos con emails automaticos en compras
+            suscricpiones y mas.
+          </li>
+          <li>
+            Difusion de correos para mantener a tus clientes al tanto de las
+            novedades y descuentos.
+          </li>
+        </ul>
+      </div>
+
+      <div class="plan-section plan-video-section">
+        <h3>7. Vista real del Plan Pro</h3>
+
+        <p class="plan-video-text">
+          Ejemplo real de navegación y uso de una tienda creada con el Plan
+          Pro. Mostramos la experiencia del usuario y el rendimiento general
+          del sitio.
+        </p>
+        <div class="plan-video-wrapper" data-pvw-slider>
+          <div class="pvw-slider">
+            <button class="pvw-nav pvw-prev">‹</button>
+
+            <div class="pvw-slides">
+              <img class="pvw-slide" src="./img/dcg.png" alt="home" />
+              <img class="pvw-slide" src="./img/dcg-product-detail.png" alt="product detail" />
+              <img class="pvw-slide" src="./img/dcg-cart.png" alt="cart" />
+            </div>
+
+            <button class="pvw-nav pvw-next">›</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX GLOBAL -->
+  <div class="pvw-lightbox" id="pvw-lightbox">
+    <span class="pvw-close">×</span>
+    <img class="pvw-lightbox-img" />
+  </div>
+
+  <script src="https://unpkg.com/split-type"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="./js/main.js"></script>
+  <script src="./js/nav.js"></script>
+  <script src="./js/modal.js"></script>
+  <script src="./js/sliderModal.js"></script>
+  <script src="./js/acordeonFaq.js" defer></script>
+</body>
+
 </html>
