@@ -674,7 +674,7 @@ body.modal-open {
 /* Video */
 .plan-video-wrapper img {
   width: 100%;
-  height: auto;
+  height: 400px;
   display: block;
   margin: 1rem 0;
 }
@@ -696,7 +696,7 @@ body.modal-open {
   width: 100%;
   flex: 0 0 100%;
   object-fit: cover;
-  cursor: pointer;
+  cursor: zoom-in;
 }
 
 /* NAV */
