@@ -459,7 +459,7 @@
 .about-portfolio {
   position: relative;
   padding: 6rem 10%;
-  padding-bottom: 0;
+  padding-bottom: 5%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2.5rem;
