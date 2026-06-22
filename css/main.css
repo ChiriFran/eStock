@@ -26,8 +26,10 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  backdrop-filter: blur(10px);
-  background-color: var(--clr-white);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background-color: rgba(244, 249, 254, 0.88);
+  border-bottom: 1px solid rgba(41, 40, 39, 0.08);
   z-index: 1000;
 }
 
@@ -175,17 +177,6 @@ body {
   color: var(--clr-light-blue);
   font-weight: 900;
   opacity: 0.68;
-}
-
-.hero-text::after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 10px;
-  margin-top: 15px;
-  background: linear-gradient(90deg, var(--clr-light-blue), transparent);
-  border-radius: 10px;
-  opacity: 0.5;
 }
 
 .clientes-section {
@@ -373,7 +364,6 @@ body {
 
   border: 4px solid var(--clr-light-blue);
   padding: 5% 5%;
-  border-radius: 0.5rem;
 
   font-family: var(--ff-texts);
   line-height: 1.4;
@@ -1264,6 +1254,7 @@ body.modal-open {
 }
 
 .requirement-card {
+  position: relative;
   border: 4px solid var(--clr-white);
   border-radius: 0.5rem;
   font-family: var(--ff-texts);
@@ -1484,6 +1475,121 @@ body.modal-open {
 .footerContainer a {
   text-decoration: none;
   color: var(--clr-white);
+}
+
+/* =====================
+   FOOTER BOTTOM BAR
+===================== */
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0 2rem;
+  margin-top: 1rem;
+  border-top: 1px solid rgba(41, 40, 39, 0.12);
+  font-family: var(--ff-texts);
+  font-size: 0.85rem;
+  color: #292827;
+  opacity: 0.55;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-nav a {
+  color: #292827;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.footer-nav a:hover {
+  opacity: 0.5;
+}
+
+/* =====================
+   HERO CTA
+===================== */
+.hero-cta {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.hero-cta-btn {
+  text-transform: uppercase;
+  display: inline-block;
+  background: var(--clr-light-blue);
+  color: var(--clr-white);
+  font-family: var(--ff-titles);
+  font-weight: 700;
+  font-size: 1.3rem;
+  padding: 0.75rem 2rem;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 20px rgba(4, 115, 240, 0.3);
+}
+
+.hero-cta-btn:hover {
+  background: #0258c4;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(4, 115, 240, 0.4);
+}
+
+.hero-cta-link {
+  font-family: var(--ff-texts);
+  font-size: 0.95rem;
+  color: #292827;
+  text-decoration: none;
+  opacity: 0.65;
+  transition: opacity 0.2s ease;
+}
+
+.hero-cta-link:hover {
+  opacity: 1;
+}
+
+/* =====================
+   PLAN BADGE (Pro)
+===================== */
+.plan-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #292827;
+  color: var(--clr-white);
+  font-family: var(--ff-texts);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.32rem 0.85rem;
+  border-bottom-left-radius: 0.4rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  z-index: 10;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.hero-services-item:hover .plan-badge,
+.hero-services-item:active .plan-badge,
+.hero-services-item:focus-visible .plan-badge {
+  background: var(--clr-white);
+  color: var(--clr-light-blue);
+}
+
+/* =====================
+   PLAN CARD DESC
+===================== */
+.hero-services-item-desc {
+  font-family: var(--ff-texts);
+  font-size: 0.97rem;
+  line-height: 1.6;
+  color: inherit;
+  margin-bottom: 0.5rem;
 }
 
 @media (max-width: 1024px) {
@@ -1727,5 +1833,27 @@ body.modal-open {
 
   .footerContainer h2 {
     font-size: 2rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  /* ---------- HERO CTA ---------- */
+  .hero-cta {
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .hero-cta-btn {
+    font-size: 1rem;
+    padding: 0.7rem 1.6rem;
+  }
+
+  .hero-cta-link {
+    font-size: 0.9rem;
   }
 }
