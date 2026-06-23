@@ -84,6 +84,36 @@ if (isPortfolioPage) {
     },
   });
 
+  function revealCardsOnScroll(selector, fromStateFn, opts = {}) {
+    const elements = gsap.utils.toArray(selector);
+    elements.forEach((el, index) => {
+      const fromState = fromStateFn(index);
+      gsap.set(el, { opacity: 0, ...fromState });
+    });
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        const card = entry.target;
+        const index = elements.indexOf(card);
+        gsap.to(card, {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          scale: 1,
+          duration: opts.duration || 1.35,
+          ease: opts.ease || "power4.out",
+          delay: (opts.stagger || 0.12) * index,
+        });
+
+        obs.unobserve(card);
+      });
+    }, { threshold: 0.06 });
+
+    elements.forEach((el) => observer.observe(el));
+  }
+
   gsap.to(".visual-card img", {
     y: 12,
     duration: 10,
@@ -94,19 +124,78 @@ if (isPortfolioPage) {
   });
 
   // Animate tech cards as a group when the stack section enters view
-  gsap.from(".stack-grid .tech-card", {
+  gsap.from(".stack-section .section-header", {
     opacity: 0,
-    y: 36,
-    scale: 0.98,
+    y: 28,
     duration: 0.75,
     ease: "power3.out",
-    stagger: 0.12,
     scrollTrigger: {
       trigger: ".stack-section",
-      start: "top 78%",
+      start: "top 88%",
       once: true,
     },
   });
+
+  revealCardsOnScroll(
+    ".stack-grid .tech-card",
+    (index) => ({
+      x: index % 2 === 0 ? -110 : 110,
+      y: 58,
+      scale: 0.94,
+    }),
+    { duration: 1.35, stagger: 0.14, ease: "power4.out" },
+  );
+
+  gsap.from(".tools-section .tools-header", {
+    opacity: 0,
+    y: 30,
+    duration: 0.75,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: ".tools-section",
+      start: "top 88%",
+      once: true,
+    },
+  });
+
+  gsap.from(
+    ".tools-section .tool-chip",
+    {
+      opacity: 0,
+      y: 24,
+      scale: 0.97,
+      duration: 0.7,
+      ease: "power3.out",
+      stagger: 0.08,
+      scrollTrigger: {
+        trigger: ".tools-section",
+        start: "top 90%",
+        once: true,
+      },
+    },
+  );
+
+  gsap.from(".projects-section .section-header", {
+    opacity: 0,
+    y: 30,
+    duration: 0.75,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: ".projects-section",
+      start: "top 88%",
+      once: true,
+    },
+  });
+
+  revealCardsOnScroll(
+    ".projects-grid .project-card",
+    (index) => ({
+      x: index % 2 === 0 ? -120 : 120,
+      y: 60,
+      scale: 0.94,
+    }),
+    { duration: 1.35, stagger: 0.14, ease: "power4.out" },
+  );
 
   const aboutTl = gsap.timeline({
     scrollTrigger: {
@@ -144,33 +233,21 @@ if (isPortfolioPage) {
         stagger: 0.11,
       },
       "-=0.5",
-    )
-    .from(
-      ".detail-card",
-      {
-        opacity: 0,
-        x: 40,
-        y: 18,
-        duration: 0.75,
-        ease: "power3.out",
-        stagger: 0.12,
-      },
-      "-=0.55",
     );
 
   gsap.utils.toArray(".detail-card").forEach((card, index) => {
     gsap.from(card, {
       opacity: 0,
-      x: index % 2 === 0 ? -30 : 30,
-      y: 18,
-      duration: 0.7,
-      ease: "power3.out",
+      x: 140,
+      y: 0,
+      duration: 1.1,
+      ease: "power4.out",
       scrollTrigger: {
         trigger: card,
         start: "top 92%",
         once: true,
       },
-      delay: index * 0.05,
+      delay: index * 0.16,
     });
   });
 
@@ -211,6 +288,30 @@ if (isPortfolioPage) {
     scrollTrigger: {
       trigger: ".cv-card",
       start: "top 94%",
+      once: true,
+    },
+  });
+
+  gsap.from(".about-portfolio .about-copy", {
+    opacity: 0,
+    y: 30,
+    duration: 0.8,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: ".about-portfolio",
+      start: "top 88%",
+      once: true,
+    },
+  });
+
+  gsap.from(".about-portfolio .about-details", {
+    opacity: 0,
+    y: 30,
+    duration: 0.8,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: ".about-portfolio",
+      start: "top 90%",
       once: true,
     },
   });
