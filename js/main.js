@@ -22,11 +22,11 @@ gsap.to(".menu-item", {
 });
 
 /* HERO TITLE */
-const heroTitle = new SplitType(".hero-title", {
+const heroTitle = new SplitType(".hero h1", {
   types: "words",
 });
 
-gsap.set(".hero-info", { perspective: 600 });
+gsap.set(".hero-copy", { perspective: 600 });
 gsap.from(heroTitle.words, {
   opacity: 0,
   y: 30,
@@ -39,7 +39,7 @@ gsap.from(heroTitle.words, {
 });
 
 /* hero Text */
-const heroText = new SplitType(".hero-text", { types: "words" });
+const heroText = new SplitType(".hero p:not(.eyebrow):not(.stat-number):not(.stat-text)", { types: "words" });
 
 gsap.from(heroText.words, {
   opacity: 0,
@@ -51,7 +51,7 @@ gsap.from(heroText.words, {
 });
 
 /* hero CTA */
-gsap.from(".hero-cta-btn", {
+gsap.from(".hero .contactoBtn", {
   opacity: 0,
   scale: 0.88,
   y: 10,
@@ -59,7 +59,7 @@ gsap.from(".hero-cta-btn", {
   delay: 0.35,
   ease: "back.out(1.8)",
 });
-gsap.from(".hero-cta-link", {
+gsap.from(".hero .secondaryBtn", {
   opacity: 0,
   x: -15,
   duration: 0.5,
@@ -69,14 +69,14 @@ gsap.from(".hero-cta-link", {
 
 /* hero stats – counter animation */
 const counterData = [
-  { prefix: "$", target: 50000000 },
-  { prefix: "+", target: 450 },
-  { prefix: "",  target: 2 },
+  { prefix: "$", suffix: "M+", target: 50 },
+  { prefix: "+", suffix: "", target: 450 },
+  { prefix: "", suffix: "", target: 2 },
 ];
 
-document.querySelectorAll(".number").forEach((el, i) => {
-  const { prefix = "", target } = counterData[i] || {};
-  el.textContent = prefix + "0";
+document.querySelectorAll(".stat-number").forEach((el, i) => {
+  const { prefix = "", suffix = "", target } = counterData[i] || {};
+  el.textContent = prefix + "0" + suffix;
   const obj = { val: 0 };
   gsap.to(obj, {
     val: target,
@@ -84,13 +84,13 @@ document.querySelectorAll(".number").forEach((el, i) => {
     delay: 0.3 + i * 0.12,
     ease: "power2.out",
     onUpdate() {
-      el.textContent = prefix + Math.round(obj.val).toLocaleString("es-AR");
+      el.textContent = prefix + Math.round(obj.val).toLocaleString("es-AR") + suffix;
     },
   });
 });
 
 /* hero stats – label texts */
-const statTexts = new SplitType(".text", { types: "words" });
+const statTexts = new SplitType(".stat-text", { types: "words" });
 gsap.from(statTexts.words, {
   opacity: 0,
   y: 18,
@@ -100,42 +100,29 @@ gsap.from(statTexts.words, {
   ease: "power2.out",
 });
 
-/* hero stat hover */
-const heroStats = document.querySelectorAll(".hero-stat");
-
-heroStats.forEach((stat) => {
-  const bg = stat.querySelector(".hover-bg");
-
-  stat.addEventListener("mouseenter", () => {
-    gsap.to(bg, {
-      scaleY: 1,
-      duration: 0.4,
-      ease: "power2.out",
-    });
-  });
-
-  stat.addEventListener("mouseleave", () => {
-    gsap.to(bg, {
-      scaleY: 0,
-      duration: 0.4,
-      ease: "power2.in",
-    });
-  });
+/* hero bento cards – entrada stagger */
+gsap.from(".bento-item", {
+  opacity: 0,
+  y: 30,
+  scale: 0.95,
+  stagger: 0.12,
+  duration: 0.8,
+  delay: 0.2,
+  ease: "power3.out",
 });
 
 /* hero mouse parallax (desktop only) */
 if (window.matchMedia("(min-width: 769px) and (hover: hover)").matches) {
-  const heroDeco = document.querySelectorAll(".hero-deco");
-  const heroImgParallax = document.querySelector(".hero-image img");
+  const bentoItems = document.querySelectorAll(".bento-item");
   const hero = document.querySelector(".hero");
   if (hero) {
     hero.addEventListener("mousemove", (e) => {
       const xPct = e.clientX / window.innerWidth - 0.5;
       const yPct = e.clientY / window.innerHeight - 0.5;
-      gsap.to(heroDeco, { x: xPct * 22, y: yPct * 22, duration: 1.4, ease: "power2.out" });
-      if (heroImgParallax) {
-        gsap.to(heroImgParallax, { x: xPct * -18, y: yPct * -18, duration: 1.4, ease: "power2.out" });
-      }
+      bentoItems.forEach((item, i) => {
+        const factor = i === 0 ? 12 : 18;
+        gsap.to(item, { x: xPct * factor, y: yPct * factor, duration: 1.4, ease: "power2.out" });
+      });
     });
   }
 }
@@ -225,10 +212,8 @@ gsap.delayedCall(0.1, () => ScrollTrigger.refresh());
 // Scroll horizontal
 let scrollTween;
 
-gsap.registerPlugin(ScrollTrigger);
-
 ScrollTrigger.matchMedia({
-  // 🖥️ Desktop: scroll horizontal
+  // Desktop: scroll horizontal
   "(min-width: 769px)": function () {
     const scrollInner = document.querySelector(".scrollInner");
 
@@ -247,7 +232,7 @@ ScrollTrigger.matchMedia({
     });
   },
 
-  // 📱 Mobile: sin scroll horizontal
+  // Mobile: sin scroll horizontal
   "(max-width: 768px)": function () {
     if (scrollTween) scrollTween.kill();
     ScrollTrigger.getAll().forEach((st) => {
@@ -272,7 +257,7 @@ gsap.utils.toArray(".scrollItem").forEach((item) => {
     .timeline({
       scrollTrigger: {
         trigger: item,
-        containerAnimation: scrollTween, // ✅ CLAVE
+        containerAnimation: scrollTween,
         start: "left 70%",
         once: true,
       },
@@ -351,7 +336,7 @@ gsap.from(".requirements-footer", {
 });
 
 ScrollTrigger.matchMedia({
-  // 📱 MOBILE
+  // Mobile
   "(max-width: 768px)": function () {
     gsap.utils.toArray(".scrollItem").forEach((item) => {
       const content = item.querySelector(".scrollContent");
@@ -410,8 +395,6 @@ ScrollTrigger.matchMedia({
 /* =========================
    CLIENTES SECTION
 ========================= */
-gsap.registerPlugin(ScrollTrigger);
-
 /* Desktop (con SplitType como tu hero) */
 ScrollTrigger.matchMedia({
   "(min-width: 769px)": function () {
@@ -469,7 +452,7 @@ ScrollTrigger.matchMedia({
       );
   },
 
-  /* 📱 Mobile (más liviano, sin SplitType) */
+  /* Mobile (más liviano, sin SplitType) */
   "(max-width: 768px)": function () {
     gsap.from(".clientes-title, .clientes-subtitle", {
       opacity: 0,
@@ -558,3 +541,57 @@ gsap.from(".footerContainer .contactoBtn", {
     },
   },
 });
+
+/* =========================
+   BENTO ZOOM - LIGHTBOX
+========================= */
+(function () {
+  const lightbox = document.getElementById("pvw-lightbox");
+  const lightboxImg = document.querySelector(".pvw-lightbox-img");
+  if (!lightbox || !lightboxImg) return;
+
+  function openBentoLightbox(src) {
+    lightbox.classList.add("pvw-active");
+    lightboxImg.src = src;
+    lightboxImg.style.transform = "scale(0.95)";
+    lightboxImg.style.opacity = "0";
+    requestAnimationFrame(() => {
+      lightboxImg.style.transition = "all 0.3s ease";
+      lightboxImg.style.transform = "scale(1)";
+      lightboxImg.style.opacity = "1";
+    });
+  }
+
+  function closeBentoLightbox() {
+    lightboxImg.style.transform = "scale(0.95)";
+    lightboxImg.style.opacity = "0";
+    setTimeout(() => {
+      lightbox.classList.remove("pvw-active");
+    }, 200);
+  }
+
+  document.querySelectorAll(".bento-zoom").forEach((card) => {
+    card.addEventListener("click", () => {
+      const img = card.querySelector("img");
+      if (img) openBentoLightbox(img.src);
+    });
+
+    card.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        const img = card.querySelector("img");
+        if (img) openBentoLightbox(img.src);
+      }
+    });
+  });
+
+  lightbox.addEventListener("click", (e) => {
+    if (e.target !== lightboxImg) closeBentoLightbox();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && lightbox.classList.contains("pvw-active")) {
+      closeBentoLightbox();
+    }
+  });
+})();
