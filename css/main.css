@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 :root {
   --clr-light-blue: #0473f0;
   --clr-white: #f4f9fe;
