@@ -1970,6 +1970,29 @@ body.modal-open {
     font-size: clamp(2rem, 6vw, 2.8rem);
   }
 
+  .hero-buttons {
+    display: flex;
+    gap: 0.6rem;
+  }
+
+  .hero-buttons .contactoBtn {
+    flex: 0 0 auto;
+    height: 2.75rem;
+    padding: 0 1.2rem;
+    font-size: 0.85rem;
+  }
+
+  .hero-buttons .secondaryBtn {
+    flex: 1 1 0;
+    min-width: 0;
+    height: 2.75rem;
+    padding: 0 1rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   .hero-bento {
     display: flex;
     flex-direction: column;
