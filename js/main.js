@@ -350,15 +350,20 @@ ScrollTrigger.matchMedia({
       if (isHorizontal === null) {
         if (Math.abs(diffX) > 5 || Math.abs(diffY) > 5) {
           isHorizontal = Math.abs(diffX) > Math.abs(diffY);
+          // Si es vertical, no hacer nada más
+          if (!isHorizontal) {
+            isDragging = false;
+            return;
+          }
         }
         return;
       }
 
-      // Si es scroll vertical, dejar pasar
+      // Si no es horizontal, dejar pasar
       if (!isHorizontal) return;
 
-      // Si es horizontal, bloquear el scroll de la página
-      e.preventDefault();
+      // Bloquear scroll solo si es cancelable
+      if (e.cancelable) e.preventDefault();
 
       currentX = e.touches[0].clientX;
       const offset = -(currentSlide * 100) + (diffX / window.innerWidth * 100);
