@@ -555,161 +555,152 @@ body {
   padding-bottom: 6%;
 }
 
+/* =========================================
+   PLAN CARDS — Minimalista con Accent Bar
+   ========================================= */
 .hero-services-item {
   position: relative;
-  overflow: hidden;
 
   display: flex;
   flex-flow: column;
   justify-content: space-between;
 
-  border: 4px solid var(--clr-light-blue);
-  padding: 5% 5%;
-
   font-family: var(--ff-texts);
   line-height: 1.4;
+}
 
-  color: var(--clr-light-blue);
+/* --- Accent Bar Card --- */
+.plan-card {
+  border: none;
+  border-left: 5px solid var(--clr-light-blue);
+  background: var(--clr-white);
+  border-radius: 0.75rem;
+  padding: 2rem 2rem 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   transition:
-    color 0.4s ease,
+    transform 0.3s ease,
     box-shadow 0.3s ease;
-  will-change: transform;
 }
 
-/* capa de relleno */
-.hero-services-item::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-color: var(--clr-light-blue);
-  transform: scaleY(0);
-  transform-origin: bottom;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: -10;
+.plan-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(4, 115, 240, 0.12);
 }
 
-/* imagen decorativa */
-.hero-services-item::after {
-  content: "";
-  position: absolute;
-  bottom: 0.2rem;
-  right: 0.2rem;
-
-  width: 100%;
-  height: 100%;
-
-  background-image: url("../img/background-points-pattern.png");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: bottom right;
-
-  pointer-events: none;
-
-  opacity: 0.05;
-  transition:
-    opacity 0.4s ease,
-    transform 0.5s ease;
-
-  filter: brightness(0);
-
-  z-index: 0;
+/* Pro card — accent bar con gradiente */
+.plan-card--pro {
+  border-left: 5px solid transparent;
+  border-image: linear-gradient(180deg, #0473f0, #6c5ce7) 1;
 }
 
-.hero-services-item:hover::after,
-.hero-services-item:active::after,
-.hero-services-item:focus-visible::after {
-  transition: 0.4s;
-  filter: brightness(100);
-}
-
-/* contenido por encima */
-.hero-services-item>* {
-  position: relative;
-  z-index: 1;
-}
-
-/* hover + mobile */
-.hero-services-item:hover::before,
-.hero-services-item:active::before,
-.hero-services-item:focus-visible::before {
-  transform: scaleY(1);
-}
-
-.hero-services-item:hover,
-.hero-services-item:active,
-.hero-services-item:focus-visible {
-  color: var(--clr-white);
-}
-
-/* título */
-.hero-services-item span {
-  font-family: var(--ff-titles);
-  font-size: 2.2rem;
-  font-weight: 900;
+/* --- Header: nombre + precio --- */
+.plan-card-header {
   margin-bottom: 0.5rem;
-  transition: color 0.3s ease;
+}
+
+.plan-name {
+  font-family: var(--ff-titles);
+  font-size: 2rem;
+  font-weight: 900;
+  color: #292827;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.plan-price {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #292827;
+  margin-bottom: 0;
 }
 
 /* etiqueta de descuento */
 .price-discount {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 700;
   padding: 0.2rem 0.5rem;
-  border-radius: 0.3rem;
-
-  background-color: var(--clr-light-blue);
-  color: var(--clr-white);
-
-  line-height: 1;
-}
-
-/* cuando está en hover y cambia el fondo */
-.hero-services-item:hover .price-discount,
-.hero-services-item:active .price-discount,
-.hero-services-item:focus-visible .price-discount {
-  background-color: var(--clr-white);
+  border-radius: 2rem;
+  background-color: rgba(4, 115, 240, 0.1);
   color: var(--clr-light-blue);
+  line-height: 1;
+  vertical-align: middle;
+  margin-left: 0.3rem;
 }
 
-.hero-services-item-price {
-  font-size: 1.4rem;
-  font-weight: 800;
+/* --- Tagline --- */
+.plan-tagline {
+  font-size: 0.95rem;
+  line-height: 1.5;
   color: #292827;
+  opacity: 0.65;
   margin-bottom: 1rem;
 }
 
-/* CTA en hover / active */
-.hero-services-item:hover p,
-.hero-services-item:active p,
-.hero-services-item:focus-visible p {
-  color: var(--clr-white);
+/* --- Features list --- */
+.plan-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
 }
 
-/* CTA / botón */
-.hero-services-item span:last-of-type {
+.plan-features li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.55rem;
+  font-size: 0.95rem;
+  color: #292827;
+  line-height: 1.4;
+}
+
+.plan-features li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--clr-light-blue);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* --- CTA button --- */
+.plan-cta {
   display: inline-block;
   width: fit-content;
-
-  font-size: 1.2rem;
-  margin-top: 1rem;
-  padding: 0.4rem 0.8rem;
-  border-radius: 0.2rem;
-
+  font-family: var(--ff-texts);
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.65rem 1.6rem;
+  border-radius: 2rem;
   background-color: #292827;
   color: var(--clr-white);
-
   cursor: pointer;
   transition:
     background-color 0.3s ease,
-    color 0.3s ease;
+    color 0.3s ease,
+    transform 0.2s ease;
 }
 
-/* CTA en hover / active */
-.hero-services-item:hover span:last-of-type,
-.hero-services-item:active span:last-of-type,
-.hero-services-item:focus-visible span:last-of-type {
-  background-color: var(--clr-white);
-  color: var(--clr-light-blue);
+.plan-cta:hover {
+  background-color: var(--clr-light-blue);
+  color: var(--clr-white);
+  transform: scale(1.03);
+}
+
+/* --- Badge "Más popular" --- */
+.plan-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: linear-gradient(135deg, #0473f0, #6c5ce7);
+  color: var(--clr-white);
+  font-family: var(--ff-texts);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.35rem 0.9rem;
+  border-bottom-left-radius: 0.75rem;
+  border-top-right-radius: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  z-index: 10;
 }
 
 /* modal */
@@ -717,8 +708,8 @@ body {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
   opacity: 0;
   pointer-events: none;
   z-index: 999;
@@ -731,32 +722,43 @@ body {
   top: 50%;
   transform: translate(-50%, 100%);
   width: 90%;
-  max-width: 620px;
+  max-width: 640px;
+  max-height: 85vh;
   background: var(--clr-white);
   color: #292827;
-  border: 4px solid var(--clr-light-blue);
-  border-radius: 0.5rem;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+  border: none;
+  border-radius: 1rem;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
   opacity: 0;
   z-index: 1000;
   pointer-events: none;
-  /* 🔥 CLAVE */
-}
-
-.modal-content {
-  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .modal-close {
   position: absolute;
-  top: 14px;
-  right: 14px;
+  top: 16px;
+  right: 16px;
   border: none;
-  background: none;
-  font-size: 20px;
+  background: rgba(4, 115, 240, 0.08);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 18px;
   font-weight: 900;
   color: var(--clr-light-blue);
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+  z-index: 10;
+}
+
+.modal-close:hover {
+  background: rgba(4, 115, 240, 0.15);
 }
 
 body.modal-open {
@@ -766,9 +768,29 @@ body.modal-open {
 /* ===== PLAN MODAL CONTENT ===== */
 
 .modal-content {
-  max-height: 75vh;
+  padding: 2rem 2rem 2.5rem;
+  max-height: calc(85vh - 60px);
   overflow-y: auto;
   font-family: var(--ff-texts);
+  scroll-behavior: smooth;
+}
+
+/* scrollbar personalizada */
+.modal-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: rgba(4, 115, 240, 0.25);
+  border-radius: 3px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(4, 115, 240, 0.4);
 }
 
 /* Título principal */
@@ -776,22 +798,21 @@ body.modal-open {
   font-family: var(--ff-titles);
   font-size: 2rem;
   font-weight: 900;
-  margin-bottom: 6px;
-  color: var(--clr-light-blue);
-  /* gris oscuro */
+  margin-bottom: 4px;
+  color: #292827;
 }
 
 /* Subtítulo */
 .plan-subtitle {
-  font-size: 14px;
-  opacity: 0.7;
-  margin-bottom: 24px;
+  font-size: 0.9rem;
+  opacity: 0.55;
+  margin-bottom: 1.5rem;
 }
 
 /* Secciones */
 .plan-section {
-  padding: 18px 0;
-  border-top: 1px solid #e5e7eb;
+  padding: 1.25rem 0;
+  border-top: 1px solid rgba(4, 115, 240, 0.1);
 }
 
 .plan-section:first-of-type {
@@ -799,12 +820,20 @@ body.modal-open {
   padding-top: 0;
 }
 
-/* Títulos de sección */
+/* Títulos de sección con icono */
 .plan-section h3 {
-  font-size: 16px;
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
   color: #292827;
-  margin-bottom: 10px;
+  margin-bottom: 0.75rem;
+}
+
+.section-icon {
+  font-size: 1.1rem;
+  flex-shrink: 0;
 }
 
 /* Listas */
@@ -1338,6 +1367,108 @@ body.modal-open {
   box-shadow: 0 0 0 4px rgba(192, 57, 174, 0.556);
 }
 
+/* Barra de progreso */
+.scrollProgress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(0, 0, 0, 0.06);
+  z-index: 10;
+}
+
+.scrollProgressBar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--clr-light-blue), #6c5ce7);
+  border-radius: 0 2px 2px 0;
+  transition: width 0.1s ease-out;
+}
+
+/* Dots indicators */
+.scrollDots {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.75rem;
+  z-index: 10;
+  padding: 0.6rem 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 50px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.scrollDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+}
+
+.scrollDot:hover {
+  background: rgba(4, 115, 240, 0.4);
+  transform: scale(1.2);
+}
+
+.scrollDot.active {
+  width: 28px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, var(--clr-light-blue), #6c5ce7);
+}
+
+/* Separador sutil entre slides */
+.scrollItem {
+  border-right: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+/* Glassmorphism sutil en el contenido */
+.scrollContent {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+}
+
+/* Mejora en sombras de imágenes */
+.scrollItem img {
+  filter: drop-shadow(0 25px 50px rgba(4, 115, 240, 0.15))
+    drop-shadow(0 10px 20px rgba(0, 0, 0, 0.08));
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    filter 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scrollItem:hover img {
+  filter: drop-shadow(0 35px 60px rgba(4, 115, 240, 0.2))
+    drop-shadow(0 15px 30px rgba(0, 0, 0, 0.1));
+}
+
+/* Tag mejorado */
+.scrollTag {
+  background: linear-gradient(
+    135deg,
+    rgba(4, 115, 240, 0.1),
+    rgba(108, 92, 231, 0.1)
+  );
+  padding: 0.35rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid rgba(4, 115, 240, 0.15);
+}
+
 /* mobile */
 @media (max-width: 900px) {
   .scrollItem {
@@ -1711,43 +1842,7 @@ body.modal-open {
   opacity: 0.5;
 }
 
-/* =====================
-   PLAN BADGE (Pro)
-===================== */
-.plan-badge {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: #292827;
-  color: var(--clr-white);
-  font-family: var(--ff-texts);
-  font-size: 0.7rem;
-  font-weight: 700;
-  padding: 0.32rem 0.85rem;
-  border-bottom-left-radius: 0.4rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  z-index: 10;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-.hero-services-item:hover .plan-badge,
-.hero-services-item:active .plan-badge,
-.hero-services-item:focus-visible .plan-badge {
-  background: var(--clr-white);
-  color: var(--clr-light-blue);
-}
-
-/* =====================
-   PLAN CARD DESC
-===================== */
-.hero-services-item-desc {
-  font-family: var(--ff-texts);
-  font-size: 0.97rem;
-  line-height: 1.6;
-  color: inherit;
-  margin-bottom: 0.5rem;
-}
+/* plan-badge y plan-cta definidos arriba en PLAN CARDS */
 
 @media (max-width: 1024px) {
   .hero {
@@ -1881,8 +1976,12 @@ body.modal-open {
     padding: 0 1rem 2rem;
   }
 
-  .hero-services-item span {
-    font-size: 1.8rem;
+  .plan-name {
+    font-size: 1.6rem;
+  }
+
+  .plan-card {
+    padding: 1.5rem 1.5rem 1.25rem;
   }
 
   /* ---------- VIDEO ---------- */
@@ -1896,28 +1995,30 @@ body.modal-open {
     opacity: 0.1;
   }
 
-  /* ---------- SCROLL SECTION ---------- */
+  /* ---------- SCROLL SECTION MOBILE SLIDER ---------- */
   .scrollSection {
     position: relative;
+    width: 100%;
     height: auto;
     overflow: hidden;
+    max-width: 100vw;
   }
 
   .scrollInner {
-    flex-direction: column;
-    transform: none !important;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     padding: 0;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
   }
 
   .scrollItem {
-    flex: none;
+    flex: 0 0 100%;
+    min-width: 100%;
     flex-direction: column;
     text-align: center;
-  }
-
-  .scrollItem {
-    padding: 1rem 1rem;
-    width: 100%;
+    padding: 2rem 1.25rem;
+    opacity: 1;
   }
 
   .scrollMedia::before {
@@ -1926,11 +2027,49 @@ body.modal-open {
     transform: translateX(-50%);
   }
 
-  .scrollSection,
-  .scrollInner,
+  .scrollProgress {
+    display: none;
+  }
+
+  .scrollDots {
+    display: flex;
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    justify-content: center;
+    padding: 1.25rem 0 0.5rem;
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    gap: 0.6rem;
+  }
+
+  .scrollDot {
+    width: 8px;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.15);
+  }
+
+  .scrollDot.active {
+    width: 22px;
+  }
+
+  .scrollContent {
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+
   .scrollItem {
-    max-width: 100vw;
-    overflow-x: hidden;
+    border-right: none;
   }
 
   .scrollItem h2 {
@@ -1938,7 +2077,19 @@ body.modal-open {
   }
 
   .scrollItem img {
-    width: 200px;
+    width: 220px;
+    filter: drop-shadow(0 20px 40px rgba(4, 115, 240, 0.12))
+      drop-shadow(0 8px 16px rgba(0, 0, 0, 0.06));
+  }
+
+  .scrollFeatures {
+    text-align: left;
+    max-width: 340px;
+    margin: 1.5rem auto 0;
+  }
+
+  .scrollFeatures li {
+    justify-content: flex-start;
   }
 
   /* requerimientos */

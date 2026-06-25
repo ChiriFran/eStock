@@ -147,6 +147,7 @@ gsap.utils.toArray(".hero-services-item").forEach((item, index) => {
     duration: 0.85,
     ease: "expo.out",
     delay: index * 0.1,
+    clearProps: "all",
     scrollTrigger: {
       trigger: item,
       start: "top 85%",
@@ -216,6 +217,10 @@ ScrollTrigger.matchMedia({
   // Desktop: scroll horizontal
   "(min-width: 769px)": function () {
     const scrollInner = document.querySelector(".scrollInner");
+    const items = gsap.utils.toArray(".scrollItem");
+    const progressBar = document.querySelector(".scrollProgressBar");
+    const dots = document.querySelectorAll(".scrollDot");
+    const totalSlides = items.length;
 
     scrollTween = gsap.to(scrollInner, {
       x: () => -(scrollInner.scrollWidth - window.innerWidth),
@@ -224,72 +229,190 @@ ScrollTrigger.matchMedia({
         trigger: ".scrollSection",
         start: "top top",
         end: () => `+=${scrollInner.scrollWidth - window.innerWidth}`,
-        scrub: 2,
+        scrub: 3.5,
         pin: true,
         anticipatePin: 1,
         invalidateOnRefresh: true,
+        onUpdate: (self) => {
+          if (progressBar) {
+            progressBar.style.width = `${(self.progress * 100).toFixed(1)}%`;
+          }
+          const activeIndex = Math.round(self.progress * (totalSlides - 1));
+          dots.forEach((dot, i) => {
+            dot.classList.toggle("active", i === activeIndex);
+          });
+        },
       },
     });
-  },
 
-  // Mobile: sin scroll horizontal
-  "(max-width: 768px)": function () {
-    if (scrollTween) scrollTween.kill();
-    ScrollTrigger.getAll().forEach((st) => {
-      if (st.trigger && st.trigger.classList.contains("scrollSection")) {
-        st.kill();
+    // Dot click navigation
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        const index = parseInt(dot.dataset.index);
+        const totalWidth = scrollInner.scrollWidth - window.innerWidth;
+        const targetProgress = index / (totalSlides - 1);
+        const st = scrollTween.scrollTrigger;
+        const scrollTarget = st.start + targetProgress * totalWidth;
+        window.scrollTo({ top: scrollTarget, behavior: "smooth" });
+      });
+    });
+
+    // Parallax on images
+    items.forEach((item) => {
+      const img = item.querySelector(".scrollMedia img");
+      if (img) {
+        gsap.to(img, {
+          y: -30,
+          ease: "none",
+          scrollTrigger: {
+            trigger: item,
+            containerAnimation: scrollTween,
+            start: "left right",
+            end: "right left",
+            scrub: true,
+          },
+        });
       }
     });
+
+    // Scale effect
+    items.forEach((item) => {
+      gsap.fromTo(
+        item,
+        { scale: 0.92, opacity: 0.5 },
+        {
+          scale: 1,
+          opacity: 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: item,
+            containerAnimation: scrollTween,
+            start: "left 80%",
+            end: "left 20%",
+            scrub: true,
+          },
+        }
+      );
+
+      gsap.fromTo(
+        item,
+        { scale: 1, opacity: 1 },
+        {
+          scale: 0.92,
+          opacity: 0.5,
+          ease: "none",
+          scrollTrigger: {
+            trigger: item,
+            containerAnimation: scrollTween,
+            start: "right 20%",
+            end: "right 80%",
+            scrub: true,
+          },
+        }
+      );
+    });
+
+    // Entrance animations - desktop only
+    gsap.utils.toArray(".scrollItem").forEach((item) => {
+      const content = item.querySelector(".scrollContent");
+      const media = item.querySelector(".scrollMedia img");
+      const features = item.querySelectorAll(".scrollFeatures li");
+      const tag = item.querySelector(".scrollTag");
+      const title = item.querySelector(".scrollTitle");
+
+      gsap.set(content, { opacity: 0, x: -25 });
+      gsap.set(media, { opacity: 0, x: 25, scale: 0.97 });
+      gsap.set(features, { opacity: 0, y: 14 });
+      if (tag) gsap.set(tag, { opacity: 0, y: 8 });
+      if (title) gsap.set(title, { opacity: 0, y: 10 });
+
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: item,
+            containerAnimation: scrollTween,
+            start: "left 85%",
+            once: true,
+          },
+        })
+        .to(tag, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" })
+        .to(title, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, "-=0.4")
+        .to(content, { opacity: 1, x: 0, duration: 0.9, ease: "power2.out" }, "-=0.55")
+        .to(features, { opacity: 1, y: 0, stagger: 0.06, duration: 0.6, ease: "power2.out" }, "-=0.5")
+        .to(media, { opacity: 1, x: 0, scale: 1, duration: 1, ease: "power2.out" }, "-=0.7");
+    });
   },
-});
 
-/* animaciones de entrada scroll horizontal */
-gsap.utils.toArray(".scrollItem").forEach((item) => {
-  const content = item.querySelector(".scrollContent");
-  const media = item.querySelector(".scrollMedia img");
-  const features = item.querySelectorAll(".scrollFeatures li");
+  // Mobile: slider con touch swipe
+  "(max-width: 768px)": function () {
+    if (scrollTween) scrollTween.kill();
 
-  gsap.set(content, { opacity: 0, x: -35 });
-  gsap.set(media, { opacity: 0, x: 35, scale: 0.95 });
-  gsap.set(features, { opacity: 0, y: 18 });
+    const scrollInner = document.querySelector(".scrollInner");
+    const items = gsap.utils.toArray(".scrollItem");
+    const dots = document.querySelectorAll(".scrollDot");
+    const totalSlides = items.length;
+    let currentSlide = 0;
+    let startX = 0;
+    let currentX = 0;
+    let isDragging = false;
 
-  gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: item,
-        containerAnimation: scrollTween,
-        start: "left 70%",
-        once: true,
-      },
-    })
-    .to(content, {
-      opacity: 1,
-      x: 0,
-      duration: 0.65,
-      ease: "power3.out",
-    })
-    .to(
-      features,
-      {
-        opacity: 1,
-        y: 0,
-        stagger: 0.07,
-        duration: 0.45,
-        ease: "power2.out",
-      },
-      "-=0.35",
-    )
-    .to(
-      media,
-      {
-        opacity: 1,
-        x: 0,
-        scale: 1,
-        duration: 0.7,
-        ease: "expo.out",
-      },
-      "-=0.45",
-    );
+    // Reset all items to visible
+    items.forEach((item) => {
+      item.style.opacity = "1";
+      item.style.transform = "none";
+      item.querySelectorAll(".scrollContent, .scrollMedia img, .scrollTag, .scrollTitle, .scrollFeatures li").forEach((el) => {
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      });
+    });
+
+    function goToSlide(index) {
+      if (index < 0 || index >= totalSlides) return;
+      currentSlide = index;
+      scrollInner.style.transform = `translateX(-${currentSlide * 100}%)`;
+      dots.forEach((dot, i) => dot.classList.toggle("active", i === currentSlide));
+    }
+
+    // Touch events
+    scrollInner.addEventListener("touchstart", (e) => {
+      startX = e.touches[0].clientX;
+      isDragging = true;
+      scrollInner.style.transition = "none";
+    }, { passive: true });
+
+    scrollInner.addEventListener("touchmove", (e) => {
+      if (!isDragging) return;
+      currentX = e.touches[0].clientX;
+      const diff = currentX - startX;
+      const offset = -(currentSlide * 100) + (diff / window.innerWidth * 100);
+      scrollInner.style.transform = `translateX(${offset}%)`;
+    }, { passive: true });
+
+    scrollInner.addEventListener("touchend", () => {
+      if (!isDragging) return;
+      isDragging = false;
+      scrollInner.style.transition = "transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)";
+      const diff = currentX - startX;
+      const threshold = window.innerWidth * 0.2;
+      if (diff < -threshold && currentSlide < totalSlides - 1) {
+        goToSlide(currentSlide + 1);
+      } else if (diff > threshold && currentSlide > 0) {
+        goToSlide(currentSlide - 1);
+      } else {
+        goToSlide(currentSlide);
+      }
+    }, { passive: true });
+
+    // Dots click
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        scrollInner.style.transition = "transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)";
+        goToSlide(parseInt(dot.dataset.index));
+      });
+    });
+
+    goToSlide(0);
+  },
 });
 
 /* anim requerimientos */
@@ -332,63 +455,6 @@ gsap.from(".requirements-footer", {
     trigger: ".requirements-footer",
     start: "top 85%",
     once: true,
-  },
-});
-
-ScrollTrigger.matchMedia({
-  // Mobile
-  "(max-width: 768px)": function () {
-    gsap.utils.toArray(".scrollItem").forEach((item) => {
-      const content = item.querySelector(".scrollContent");
-      const media = item.querySelector(".scrollMedia img");
-      const features = item.querySelectorAll(".scrollFeatures li");
-
-      if (!content || !media) return;
-
-      gsap.set([content, media, features], {
-        opacity: 0,
-        y: 24,
-      });
-
-      gsap.set(media, { scale: 0.98 });
-
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: item,
-            start: "top 80%",
-            once: true,
-          },
-        })
-        .to(content, {
-          opacity: 1,
-          y: 0,
-          duration: 0.5,
-          ease: "power2.out",
-        })
-        .to(
-          features,
-          {
-            opacity: 1,
-            y: 0,
-            stagger: 0.05,
-            duration: 0.35,
-            ease: "power2.out",
-          },
-          "-=0.25",
-        )
-        .to(
-          media,
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.55,
-            ease: "power3.out",
-          },
-          "-=0.35",
-        );
-    });
   },
 });
 

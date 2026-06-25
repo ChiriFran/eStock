@@ -108,24 +108,40 @@
     </section>
 
     <div class="hero-services-container" id="planes">
-      <div class="hero-services-item">
-        <span>Plan Starter</span>
-        <p class="hero-services-item-price">
-          50 USD / Mes
-          <span class="price-discount">25% anual</span>
-        </p>
-        <p class="hero-services-item-desc">Ideal para emprendedores y marcas que están dando sus primeros pasos en ecommerce. Incluye una tienda online optimizada, panel administrativo, gestión de productos y pedidos, y recepción de consultas por WhatsApp. Una solución simple y profesional para empezar a vender sin pagar comisiones por venta.</p>
-        <span class="open-starter-modal">Ver Info</span>
+      <div class="hero-services-item plan-card">
+        <div class="plan-card-header">
+          <span class="plan-name">Plan Starter</span>
+          <p class="plan-price">
+            50 USD / Mes
+            <span class="price-discount">25% anual</span>
+          </p>
+        </div>
+        <p class="plan-tagline">Ideal para emprendedores dando sus primeros pasos en ecommerce.</p>
+        <ul class="plan-features">
+          <li>Tienda online optimizada</li>
+          <li>Panel administrativo completo</li>
+          <li>Gestión de productos y pedidos</li>
+          <li>Consultas por WhatsApp</li>
+        </ul>
+        <span class="open-starter-modal plan-cta">Ver detalles</span>
       </div>
-      <div class="hero-services-item">
+      <div class="hero-services-item plan-card plan-card--pro">
         <div class="plan-badge">Más popular</div>
-        <span>Plan Pro</span>
-        <p class="hero-services-item-price">
-          75 USD / Mes
-          <span class="price-discount">25% anual</span>
-        </p>
-        <p class="hero-services-item-desc">Pensado para negocios que quieren automatizar procesos y escalar sus ventas. Este plan incluye un ecommerce completo con panel administrativo profesional para gestionar productos, stock y pedidos en un solo lugar. También integra pagos con Mercado Pago, correos automáticos en cada compra y campañas de email marketing para comunicar novedades, promociones y descuentos a tus clientes.</p>
-        <span class="open-pro-modal" data-plan="pro">Ver Info</span>
+        <div class="plan-card-header">
+          <span class="plan-name">Plan Pro</span>
+          <p class="plan-price">
+            75 USD / Mes
+            <span class="price-discount">25% anual</span>
+          </p>
+        </div>
+        <p class="plan-tagline">Para negocios que quieren automatizar y escalar sus ventas.</p>
+        <ul class="plan-features">
+          <li>Todo lo del Plan Starter</li>
+          <li>Pagos con Mercado Pago</li>
+          <li>Correos automáticos por compra</li>
+          <li>Email marketing integrado</li>
+        </ul>
+        <span class="open-pro-modal plan-cta" data-plan="pro">Ver detalles</span>
       </div>
     </div>
   </main>
@@ -166,6 +182,11 @@
   </section>
 
   <section class="scrollSection" aria-label="Características del ecommerce">
+    <!-- Barra de progreso -->
+    <div class="scrollProgress">
+      <div class="scrollProgressBar"></div>
+    </div>
+
     <div class="scrollInner">
       <section class="scrollItem">
         <div class="scrollContent">
@@ -337,6 +358,14 @@
         </div>
       </section>
     </div>
+
+    <!-- Dots indicators -->
+    <nav class="scrollDots" aria-label="Navegación de slides">
+      <button class="scrollDot active" data-index="0" aria-label="Slide 1: Ecommerce"></button>
+      <button class="scrollDot" data-index="1" aria-label="Slide 2: Dashboard"></button>
+      <button class="scrollDot" data-index="2" aria-label="Slide 3: Pagos"></button>
+      <button class="scrollDot" data-index="3" aria-label="Slide 4: Email Marketing"></button>
+    </nav>
   </section>
 
   <section class="requirements-section">
@@ -513,7 +542,7 @@
       <p class="plan-subtitle">¿Qué incluye este plan?</p>
 
       <div class="plan-section">
-        <h3>1. Página web profesional</h3>
+        <h3><span class="section-icon">🌐</span> Página web profesional</h3>
         <ul>
           <li>
             Optimización SEO básica para mejorar visibilidad en buscadores.
@@ -533,7 +562,7 @@
       </div>
 
       <div class="plan-section">
-        <h3>2. Panel administrativo</h3>
+        <h3><span class="section-icon">⚙️</span> Panel administrativo</h3>
         <ul>
           <li>
             <strong>Estadísticas generales:</strong>
@@ -566,7 +595,7 @@
       </div>
 
       <div class="plan-section">
-        <h3>3. Identidad visual y contenido</h3>
+        <h3><span class="section-icon">🎨</span> Identidad visual y contenido</h3>
         <ul>
           <li>
             Adaptación de tu manual de marca o del contenido que ya tengas.
@@ -580,7 +609,7 @@
       </div>
 
       <div class="plan-section">
-        <h3>4. Carga inicial de productos</h3>
+        <h3><span class="section-icon">📦</span> Carga inicial de productos</h3>
         <ul>
           <li>Carga de hasta <strong>100 productos</strong>.</li>
           <li>
@@ -591,7 +620,7 @@
       </div>
 
       <div class="plan-section">
-        <h3>5. Configuración general de la tienda</h3>
+        <h3><span class="section-icon">🔧</span> Configuración general de la tienda</h3>
         <ul>
           <li>
             Configuración completa de la tienda y sus parámetros principales.
@@ -604,7 +633,7 @@
       </div>
 
       <div class="plan-section">
-        <h3>6. Optimización SEO avanzada para Google & Rich Results</h3>
+        <h3><span class="section-icon">🔍</span> Optimización SEO avanzada para Google & Rich Results</h3>
         <ul>
           <li>
             Implementación de <strong>datos estructurados (Schema.org)</strong> para mejorar la comprensión del sitio
@@ -626,7 +655,7 @@
       </div>
 
       <div class="plan-section plan-video-section">
-        <h3>7. Vista real del Plan Starter</h3>
+        <h3><span class="section-icon">👁️</span> Vista real del Plan Starter</h3>
 
         <p class="plan-video-text">
           Ejemplo real de navegación y uso de una tienda creada con el Plan
@@ -657,13 +686,12 @@
 
     <div class="modal-content">
       <!-- CONTENIDO PLAN PRO -->
-      <!-- CONTENIDO PLAN STARTER -->
 
       <h2 class="plan-title">Plan Pro</h2>
       <p class="plan-subtitle">¿Qué incluye este plan?</p>
 
       <div class="plan-section">
-        <h3>1. Página web profesional</h3>
+        <h3><span class="section-icon">🌐</span> Página web profesional</h3>
         <ul>
           <li>
             Optimización SEO básica para mejorar visibilidad en buscadores.
@@ -683,7 +711,7 @@
       </div>
 
       <div class="plan-section">
-        <h3>2. Panel administrativo</h3>
+        <h3><span class="section-icon">⚙️</span> Panel administrativo</h3>
         <ul>
           <li>
             <strong>Estadísticas generales:</strong>
@@ -716,7 +744,7 @@
       </div>
 
       <div class="plan-section">
-        <h3>3. Identidad visual y contenido</h3>
+        <h3><span class="section-icon">🎨</span> Identidad visual y contenido</h3>
         <ul>
           <li>
             Adaptación de tu manual de marca o del contenido que ya tengas.
@@ -730,7 +758,7 @@
       </div>
 
       <div class="plan-section">
-        <h3>4. Carga inicial de productos</h3>
+        <h3><span class="section-icon">📦</span> Carga inicial de productos</h3>
         <ul>
           <li>Carga de hasta <strong>100 productos</strong>.</li>
           <li>
@@ -741,7 +769,7 @@
       </div>
 
       <div class="plan-section">
-        <h3>5. Pagos online</h3>
+        <h3><span class="section-icon">💳</span> Pagos online</h3>
         <ul>
           <li>
             Checkout de compra con Mercadopago para integrar compras robustas
@@ -755,7 +783,7 @@
       </div>
 
       <div class="plan-section">
-        <h3>6. Emails automáticos & Email Marketing</h3>
+        <h3><span class="section-icon">✉️</span> Emails automáticos & Email Marketing</h3>
         <ul>
           <li>
             Automatiza tus eventos con emails automaticos en compras
@@ -769,7 +797,7 @@
       </div>
 
       <div class="plan-section">
-        <h3>7. Optimización SEO avanzada para Google & Rich Results</h3>
+        <h3><span class="section-icon">🔍</span> Optimización SEO avanzada para Google & Rich Results</h3>
         <ul>
           <li>
             Implementación de <strong>datos estructurados (Schema.org)</strong> para mejorar la comprensión del sitio
@@ -791,7 +819,7 @@
       </div>
 
       <div class="plan-section plan-video-section">
-        <h3>8. Vista real del Plan Pro</h3>
+        <h3><span class="section-icon">👁️</span> Vista real del Plan Pro</h3>
 
         <p class="plan-video-text">
           Ejemplo real de navegación y uso de una tienda creada con el Plan
