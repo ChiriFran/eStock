@@ -347,14 +347,17 @@ ScrollTrigger.matchMedia({
   "(max-width: 768px)": function () {
     if (scrollTween) scrollTween.kill();
 
+    const scrollSection = document.querySelector(".scrollSection");
     const scrollInner = document.querySelector(".scrollInner");
     const items = gsap.utils.toArray(".scrollItem");
     const dots = document.querySelectorAll(".scrollDot");
     const totalSlides = items.length;
     let currentSlide = 0;
     let startX = 0;
+    let startY = 0;
     let currentX = 0;
     let isDragging = false;
+    let isHorizontal = null;
 
     // Reset all items to visible
     items.forEach((item) => {
@@ -373,24 +376,43 @@ ScrollTrigger.matchMedia({
       dots.forEach((dot, i) => dot.classList.toggle("active", i === currentSlide));
     }
 
-    // Touch events
-    scrollInner.addEventListener("touchstart", (e) => {
+    // Touch events - solo en el contenedor del slider
+    scrollSection.addEventListener("touchstart", (e) => {
       startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
       isDragging = true;
+      isHorizontal = null;
       scrollInner.style.transition = "none";
     }, { passive: true });
 
-    scrollInner.addEventListener("touchmove", (e) => {
+    scrollSection.addEventListener("touchmove", (e) => {
       if (!isDragging) return;
-      currentX = e.touches[0].clientX;
-      const diff = currentX - startX;
-      const offset = -(currentSlide * 100) + (diff / window.innerWidth * 100);
-      scrollInner.style.transform = `translateX(${offset}%)`;
-    }, { passive: true });
+      const diffX = e.touches[0].clientX - startX;
+      const diffY = e.touches[0].clientY - startY;
 
-    scrollInner.addEventListener("touchend", () => {
+      // Detectar dirección en el primer movimiento
+      if (isHorizontal === null) {
+        if (Math.abs(diffX) > 5 || Math.abs(diffY) > 5) {
+          isHorizontal = Math.abs(diffX) > Math.abs(diffY);
+        }
+        return;
+      }
+
+      // Si es scroll vertical, dejar pasar
+      if (!isHorizontal) return;
+
+      // Si es horizontal, bloquear el scroll de la página
+      e.preventDefault();
+
+      currentX = e.touches[0].clientX;
+      const offset = -(currentSlide * 100) + (diffX / window.innerWidth * 100);
+      scrollInner.style.transform = `translateX(${offset}%)`;
+    }, { passive: false });
+
+    scrollSection.addEventListener("touchend", () => {
       if (!isDragging) return;
       isDragging = false;
+      isHorizontal = null;
       scrollInner.style.transition = "transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)";
       const diff = currentX - startX;
       const threshold = window.innerWidth * 0.2;
