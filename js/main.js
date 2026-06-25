@@ -231,7 +231,6 @@ ScrollTrigger.matchMedia({
   "(min-width: 769px)": function () {
     const scrollInner = document.querySelector(".scrollInner");
     const items = gsap.utils.toArray(".scrollItem");
-    const progressBar = document.querySelector(".scrollProgressBar");
     const dots = document.querySelectorAll(".scrollDot");
     const totalSlides = items.length;
 
@@ -242,23 +241,23 @@ ScrollTrigger.matchMedia({
         trigger: ".scrollSection",
         start: "top top",
         end: () => `+=${scrollInner.scrollWidth - window.innerWidth}`,
-        scrub: 3.5,
+        scrub: 2.5,
         pin: true,
         anticipatePin: 1,
         invalidateOnRefresh: true,
+        snap: {
+          snapTo: 1 / (totalSlides - 1),
+          duration: { min: 0.5, max: 0.8 },
+          ease: "power3.inOut",
+        },
         onUpdate: (self) => {
-          if (progressBar) {
-            progressBar.style.width = `${(self.progress * 100).toFixed(1)}%`;
-          }
           const activeIndex = Math.round(self.progress * (totalSlides - 1));
-          dots.forEach((dot, i) => {
-            dot.classList.toggle("active", i === activeIndex);
-          });
+          dots.forEach((dot, i) => dot.classList.toggle("active", i === activeIndex));
         },
       },
     });
 
-    // Dot click navigation
+    // Dot click
     dots.forEach((dot) => {
       dot.addEventListener("click", () => {
         const index = parseInt(dot.dataset.index);
@@ -270,89 +269,33 @@ ScrollTrigger.matchMedia({
       });
     });
 
-    // Parallax on images
+    // Animaciones de entrada
     items.forEach((item) => {
-      const img = item.querySelector(".scrollMedia img");
-      if (img) {
-        gsap.to(img, {
-          y: -30,
-          ease: "none",
-          scrollTrigger: {
-            trigger: item,
-            containerAnimation: scrollTween,
-            start: "left right",
-            end: "right left",
-            scrub: true,
-          },
-        });
-      }
-    });
-
-    // Scale effect
-    items.forEach((item) => {
-      gsap.fromTo(
-        item,
-        { scale: 0.92, opacity: 0.5 },
-        {
-          scale: 1,
-          opacity: 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: item,
-            containerAnimation: scrollTween,
-            start: "left 80%",
-            end: "left 20%",
-            scrub: true,
-          },
-        }
-      );
-
-      gsap.fromTo(
-        item,
-        { scale: 1, opacity: 1 },
-        {
-          scale: 0.92,
-          opacity: 0.5,
-          ease: "none",
-          scrollTrigger: {
-            trigger: item,
-            containerAnimation: scrollTween,
-            start: "right 20%",
-            end: "right 80%",
-            scrub: true,
-          },
-        }
-      );
-    });
-
-    // Entrance animations - desktop only
-    gsap.utils.toArray(".scrollItem").forEach((item) => {
-      const content = item.querySelector(".scrollContent");
-      const media = item.querySelector(".scrollMedia img");
-      const features = item.querySelectorAll(".scrollFeatures li");
       const tag = item.querySelector(".scrollTag");
       const title = item.querySelector(".scrollTitle");
+      const content = item.querySelector(".scrollContent");
+      const features = item.querySelectorAll(".scrollFeatures li");
+      const media = item.querySelector(".scrollMedia img");
 
-      gsap.set(content, { opacity: 0, x: -25 });
-      gsap.set(media, { opacity: 0, x: 25, scale: 0.97 });
-      gsap.set(features, { opacity: 0, y: 14 });
-      if (tag) gsap.set(tag, { opacity: 0, y: 8 });
-      if (title) gsap.set(title, { opacity: 0, y: 10 });
+      gsap.set(tag, { opacity: 0, y: 10 });
+      gsap.set(title, { opacity: 0, y: 15 });
+      gsap.set(content, { opacity: 0, y: 20 });
+      gsap.set(features, { opacity: 0, y: 10 });
+      gsap.set(media, { opacity: 0, y: 20 });
 
-      gsap
-        .timeline({
-          scrollTrigger: {
-            trigger: item,
-            containerAnimation: scrollTween,
-            start: "left 85%",
-            once: true,
-          },
-        })
-        .to(tag, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" })
-        .to(title, { opacity: 1, y: 0, duration: 0.7, ease: "power2.out" }, "-=0.4")
-        .to(content, { opacity: 1, x: 0, duration: 0.9, ease: "power2.out" }, "-=0.55")
-        .to(features, { opacity: 1, y: 0, stagger: 0.06, duration: 0.6, ease: "power2.out" }, "-=0.5")
-        .to(media, { opacity: 1, x: 0, scale: 1, duration: 1, ease: "power2.out" }, "-=0.7");
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: item,
+          containerAnimation: scrollTween,
+          start: "left 70%",
+          toggleActions: "play none none none",
+        },
+      })
+        .to(tag, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" })
+        .to(title, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, "-=0.3")
+        .to(content, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, "-=0.35")
+        .to(features, { opacity: 1, y: 0, stagger: 0.05, duration: 0.4, ease: "power2.out" }, "-=0.35")
+        .to(media, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, "-=0.4");
     });
   },
 
