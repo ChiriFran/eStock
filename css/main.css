@@ -1955,19 +1955,37 @@ body.modal-open {
   }
 
   .hero-stats-bar {
-    gap: 1.5rem;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 0;
+    margin-top: 2rem;
   }
 
   .stat-item {
-    gap: 0.75rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0 1rem;
   }
 
-  .stat-number {
-    font-size: 1.4rem;
+  .stat-item:not(:last-child) {
+    border-right: 1px solid rgba(41, 40, 39, 0.12);
+  }
+
+  .stat-divider {
+    display: none;
+  }
+
+  .stat-item:last-child {
+    display: none;
+  }
+
+  .hero .stat-number {
+    font-size: 3rem;
   }
 
   .stat-text {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
   }
 
   /* ---------- SERVICES ---------- */
