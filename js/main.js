@@ -111,21 +111,34 @@ gsap.from(".bento-item", {
   ease: "power3.out",
 });
 
-/* hero mouse parallax (desktop only) */
-if (window.matchMedia("(min-width: 769px) and (hover: hover)").matches) {
-  const bentoItems = document.querySelectorAll(".bento-item");
-  const hero = document.querySelector(".hero");
-  if (hero) {
-    hero.addEventListener("mousemove", (e) => {
-      const xPct = e.clientX / window.innerWidth - 0.5;
-      const yPct = e.clientY / window.innerHeight - 0.5;
-      bentoItems.forEach((item, i) => {
-        const factor = i === 0 ? 12 : 18;
-        gsap.to(item, { x: xPct * factor, y: yPct * factor, duration: 1.4, ease: "power2.out" });
-      });
-    });
+/* bento slider – mobile dot navigation */
+(function () {
+  const track = document.querySelector(".bento-slider-track");
+  const dots = document.querySelectorAll(".bento-dot");
+  if (!track || !dots.length) return;
+
+  const slides = track.querySelectorAll(".bento-item");
+
+  function updateDots() {
+    const scrollLeft = track.scrollLeft;
+    const trackWidth = track.scrollWidth - track.clientWidth;
+    const progress = trackWidth > 0 ? scrollLeft / trackWidth : 0;
+    const index = Math.round(progress * (slides.length - 1));
+    dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
   }
-}
+
+  track.addEventListener("scroll", updateDots, { passive: true });
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener("click", () => {
+      const slide = slides[i];
+      if (slide) {
+        const offset = slide.offsetLeft - (track.clientWidth - slide.clientWidth) / 2;
+        track.scrollTo({ left: offset, behavior: "smooth" });
+      }
+    });
+  });
+})();
 
 /* services items – premium & mobile safe */
 gsap.registerPlugin(ScrollTrigger);
