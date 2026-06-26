@@ -169,7 +169,7 @@ body {
 
 .hero p {
   font-family: var(--ff-texts);
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: 1.8;
   max-width: 480px;
   opacity: 0.8;
@@ -229,7 +229,7 @@ body {
 
 .hero-bento {
   display: grid;
-  grid-template-columns: 1.3fr 0.7fr;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 0.75rem;
   width: 100%;
@@ -264,7 +264,7 @@ body {
 }
 
 .bento-small {
-  min-height: 195px;
+  aspect-ratio: 1 / 1;
   border-radius: 1.25rem;
 }
 
@@ -364,9 +364,9 @@ body {
   gap: 0.75rem;
 }
 
-.stat-number {
+p.stat-number {
   font-family: var(--ff-titles);
-  font-size: 1.75rem;
+  font-size: 2.4rem;
   font-weight: 900;
   line-height: 1;
   color: var(--clr-light-blue);
@@ -1945,6 +1945,10 @@ body.modal-open {
     min-width: 0;
     scroll-snap-align: center;
     min-height: 240px;
+  }
+
+  .bento-slider-track .bento-small {
+    aspect-ratio: unset;
   }
 
   .bento-slider-track .bento-large {
