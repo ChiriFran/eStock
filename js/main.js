@@ -554,6 +554,65 @@ if (window.matchMedia("(hover: hover)").matches) {
   });
 }
 
+/* =========================
+   IMPORTADORES CTA SECTION
+========================= */
+const importadoresTl = gsap.timeline({
+  scrollTrigger: {
+    trigger: ".importadores-cta-section",
+    start: "top 80%",
+    once: true,
+  },
+});
+
+importadoresTl
+  .from(".importadores-cta-text h2", {
+    opacity: 0,
+    y: 30,
+    duration: 0.7,
+    ease: "power3.out",
+  })
+  .from(
+    ".importadores-cta-text p",
+    {
+      opacity: 0,
+      y: 20,
+      duration: 0.55,
+      ease: "power2.out",
+    },
+    "-=0.35",
+  )
+  .from(
+    ".importadores-cta-text .contactoBtn",
+    {
+      opacity: 0,
+      scale: 0.88,
+      y: 10,
+      duration: 0.6,
+      ease: "back.out(1.8)",
+    },
+    "-=0.3",
+  )
+  .from(
+    ".importadores-cta-mockup",
+    {
+      opacity: 0,
+      y: 40,
+      duration: 0.7,
+      ease: "power3.out",
+      onComplete: () => {
+        gsap.to(".importadores-cta-mockup img", {
+          y: "+=8",
+          duration: 2.2,
+          ease: "sine.inOut",
+          yoyo: true,
+          repeat: -1,
+        });
+      },
+    },
+    "-=0.45",
+  );
+
 /* footer */
 gsap.from(".footerContainer h2", {
   opacity: 0,
