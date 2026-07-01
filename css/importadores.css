@@ -179,7 +179,7 @@
 
 .stat-line {
   font-family: var(--ff-texts);
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #292827;
   opacity: 0.8;
 }
@@ -187,7 +187,7 @@
 .stat-line strong {
   font-family: var(--ff-titles);
   font-weight: 800;
-  font-size: 1.5rem;
+  font-size: 2.2rem;
   color: var(--clr-light-blue);
 }
 
@@ -292,78 +292,125 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.7rem;
-  max-width: 980px;
+  max-width: 820px;
   margin: 0 auto;
 }
 
-.painpoint-card {
-  position: relative;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  border-radius: 0.8rem;
-  padding: 1.2rem 1.2rem 1.1rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
+/* ── Bento Flip Cards ── */
+
+.bento-cell {
+  perspective: 1000px;
+  cursor: pointer;
+  outline: none;
+  height: 130px;
 }
 
-.painpoint-card::before {
+.bento-cell:focus-visible {
+  outline: 2px solid var(--clr-light-blue);
+  outline-offset: 2px;
+  border-radius: 0.9rem;
+}
+
+.bento-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.bento-cell.flipped .bento-inner {
+  transform: rotateY(180deg);
+}
+
+.bento-front,
+.bento-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 0.9rem;
+  padding: 1.2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.bento-front {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  gap: 0.35rem;
+  transition: box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.bento-front::before {
   content: "";
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
   width: 3px;
-  border-radius: 3px 0 0 3px;
-  background: linear-gradient(180deg, #f04e4e, #e02020);
-  opacity: 0.7;
+  border-radius: 0.9rem 0 0 0.9rem;
+  background: var(--card-color, #f04e4e);
+  opacity: 0.55;
 }
 
-.painpoint-card:hover {
-  transform: translateY(-2px);
+.bento-cell:hover .bento-front {
   box-shadow:
     0 4px 8px rgba(0, 0, 0, 0.04),
     0 12px 28px rgba(0, 0, 0, 0.06);
-  border-color: rgba(240, 78, 78, 0.15);
+  border-color: var(--card-color, rgba(240, 78, 78, 0.2));
 }
 
-.painpoint-icon {
-  font-size: 1.5rem;
-  margin-bottom: 0.1rem;
+.bento-back {
+  background: #0473f0;
+  transform: rotateY(180deg);
 }
 
-.painpoint-card h3 {
+.bento-back p {
+  font-family: var(--ff-texts);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+}
+
+.bento-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.bento-front h3 {
   font-family: var(--ff-titles);
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   font-weight: 700;
   color: #1a1a2e;
   margin: 0;
   letter-spacing: -0.01em;
+  line-height: 1.2;
 }
 
-.painpoint-card p {
+.bento-hint {
   font-family: var(--ff-texts);
-  font-size: 0.8rem;
-  line-height: 1.55;
-  opacity: 0.68;
-  margin: 0;
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--card-color, #f04e4e);
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  margin-top: 0.1rem;
 }
 
-.painpoint-number {
-  position: absolute;
-  right: 0.7rem;
-  bottom: -0.3rem;
-  font-family: var(--ff-titles);
-  font-size: 3.2rem;
-  font-weight: 800;
-  line-height: 1;
-  opacity: 0.035;
-  pointer-events: none;
-  color: #f04e4e;
+.bento-cell:hover .bento-hint {
+  opacity: 0.75;
+}
+
+.bento-cell.flipped .bento-hint {
+  opacity: 0;
 }
 
 /* ── Solution Section ── */
@@ -788,11 +835,34 @@
   }
 
   .painpoints-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.55rem;
+    max-width: 720px;
   }
 
-  .painpoint-card:nth-child(n) {
-    grid-column: span 1;
+  .bento-cell {
+    height: 120px;
+  }
+
+  .bento-front,
+  .bento-back {
+    padding: 1rem 0.8rem;
+  }
+
+  .bento-icon {
+    font-size: 1.7rem;
+  }
+
+  .bento-front h3 {
+    font-size: 0.85rem;
+  }
+
+  .bento-hint {
+    font-size: 0.52rem;
+  }
+
+  .bento-back p {
+    font-size: 0.75rem;
   }
 }
 
@@ -814,17 +884,52 @@
     font-size: clamp(2rem, 6vw, 2.8rem);
   }
 
+  .importadores-hero-visual {
+    order: 1;
+  }
+
   .importadores-visual-stack {
     max-width: 100%;
   }
 
   .painpoints-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.4rem;
+    max-width: 100%;
+  }
+
+  .bento-cell {
+    height: 110px;
+  }
+
+  .bento-front,
+  .bento-back {
+    padding: 0.8rem 0.6rem;
+  }
+
+  .bento-icon {
+    font-size: 1.4rem;
+  }
+
+  .bento-front h3 {
+    font-size: 0.7rem;
+  }
+
+  .bento-back p {
+    font-size: 0.65rem;
+    line-height: 1.4;
+  }
+
+  .bento-hint {
+    font-size: 0.48rem;
   }
 
   .solution-mockup {
-    max-width: 100%;
-    padding: 1.5rem;
+    display: none;
+  }
+
+  .solution-section {
+    gap: 0;
   }
 
   .audience-chips {
@@ -861,7 +966,43 @@
     font-size: 1.7rem;
   }
 
+  .painpoints-grid {
+    gap: 0.35rem;
+  }
+
+  .bento-cell {
+    height: 100px;
+  }
+
+  .bento-front,
+  .bento-back {
+    padding: 0.7rem 0.5rem;
+    border-radius: 0.6rem;
+  }
+
+  .bento-icon {
+    font-size: 1.2rem;
+  }
+
+  .bento-front h3 {
+    font-size: 0.62rem;
+  }
+
+  .bento-hint {
+    font-size: 0.45rem;
+  }
+
+  .bento-back p {
+    font-size: 0.58rem;
+  }
+
   .solution-mockup-stats {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bento-inner {
+    transition: none;
   }
 }

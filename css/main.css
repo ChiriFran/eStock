@@ -2318,4 +2318,8 @@ body.modal-open {
   .importadores-cta-mockup {
     display: none;
   }
+
+  .importadores-cta-section::after {
+    opacity: 0.1;
+  }
 }

@@ -58,7 +58,26 @@ document.addEventListener("DOMContentLoaded", () => {
   if (heroStats) {
     gsap.fromTo(heroStats,
       { opacity: 0, y: 12 },
-      { opacity: 1, y: 0, duration: 0.5, delay: 0.45, ease: "power2.out" }
+      {
+        opacity: 1, y: 0, duration: 0.5, delay: 0.45, ease: "power2.out",
+        onComplete() {
+          const counters = heroStats.querySelectorAll("strong[data-target]");
+          counters.forEach((el) => {
+            const target = +el.dataset.target;
+            const prefix = el.dataset.prefix || "";
+            const suffix = el.dataset.suffix || "";
+            const obj = { val: 0 };
+            gsap.to(obj, {
+              val: target,
+              duration: 1.8,
+              ease: "power2.out",
+              onUpdate() {
+                el.textContent = prefix + Math.round(obj.val) + suffix;
+              },
+            });
+          });
+        },
+      }
     );
   }
 
@@ -74,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  const ppCards = document.querySelectorAll(".painpoint-card");
+  const ppCards = document.querySelectorAll(".bento-cell");
   if (ppCards.length) {
     gsap.fromTo(ppCards,
       { opacity: 0, y: 22 },
@@ -83,6 +102,22 @@ document.addEventListener("DOMContentLoaded", () => {
         scrollTrigger: { trigger: ".painpoints-grid", start: "top 88%" },
       }
     );
+
+    ppCards.forEach(cell => {
+      cell.addEventListener("click", () => {
+        ppCards.forEach(c => {
+          if (c !== cell) c.classList.remove("flipped");
+        });
+        cell.classList.toggle("flipped");
+      });
+
+      cell.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          cell.click();
+        }
+      });
+    });
   }
 
   /* ── Solution ── */
