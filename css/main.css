@@ -2003,10 +2003,6 @@ body.modal-open {
     display: none;
   }
 
-  .stat-item:last-child {
-    display: none;
-  }
-
   .hero .stat-number {
     font-size: 3rem;
   }
@@ -2176,4 +2172,198 @@ body.modal-open {
     font-size: 0.8rem;
   }
 
+}
+
+/* =====================
+   IMPORTADORES CTA (HOME)
+   ===================== */
+.importadores-cta-section {
+  width: 100%;
+  background-color: var(--clr-light-blue);
+  display: flex;
+  align-items: center;
+  padding: 4rem 6%;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.importadores-cta-section::after {
+  content: "";
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  background-image: url("../img/background-hero-corner-grey.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  bottom: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: -1;
+  filter: brightness(100);
+  transform: rotate(-90deg);
+}
+
+.importadores-cta-content {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+/* Texto */
+.importadores-cta-text h2 {
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  font-weight: 800;
+  font-family: var(--ff-titles);
+  line-height: 1.1;
+  color: var(--clr-white);
+  margin-bottom: 1.5rem;
+}
+
+.importadores-cta-text p {
+  font-size: clamp(1.1rem, 1.3vw, 1.4rem);
+  font-family: var(--ff-texts);
+  color: var(--clr-white);
+  max-width: 520px;
+  opacity: 0.9;
+  margin-bottom: 2.5rem;
+}
+
+.importadores-cta-text .contactoBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  border-radius: 999px;
+  font-family: var(--ff-texts);
+  font-weight: 700;
+  font-size: 1.05rem;
+  background: var(--clr-white);
+  color: var(--clr-light-blue);
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.importadores-cta-text .contactoBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.2);
+  color: var(--clr-light-blue);
+}
+
+/* Mockup visual */
+.importadores-cta-mockup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 0;
+}
+
+.importadores-cta-mockup::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url("../img/background-triangle-pattern.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  bottom: 0;
+  right: 0;
+  filter: brightness(100);
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: -2;
+}
+
+.importadores-cta-card {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1.2rem;
+  padding: 1.8rem 2rem;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+}
+
+.cta-card-header {
+  display: flex;
+  gap: 0.45rem;
+  margin-bottom: 1.4rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.cta-card-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.cta-card-dot:nth-child(1) { background: #ff5f57; }
+.cta-card-dot:nth-child(2) { background: #ffbd2e; }
+.cta-card-dot:nth-child(3) { background: #28c840; }
+
+.cta-card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cta-card-row:last-child {
+  border-bottom: none;
+}
+
+.cta-card-label {
+  font-family: var(--ff-texts);
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.cta-card-value {
+  font-family: var(--ff-titles);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--clr-white);
+}
+
+.cta-card-value--highlight {
+  color: #6ee7ff;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .importadores-cta-section {
+    padding: 3rem 1.5rem;
+  }
+
+  .importadores-cta-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .importadores-cta-text p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .importadores-cta-mockup {
+    order: -1;
+    margin-bottom: 1rem;
+  }
+
+  .importadores-cta-card {
+    max-width: 320px;
+    margin: 0 auto;
+  }
 }
