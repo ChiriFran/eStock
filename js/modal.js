@@ -1,3 +1,6 @@
+/* ========= GLOBAL SCROLL ========= */
+let savedScrollY = 0;
+
 /* ========= STARTER MODAL ========= */
 const starterModal = document.getElementById("starterModal");
 const starterOverlay = document.getElementById("starterOverlay");
@@ -25,11 +28,14 @@ starterTl
   );
 
 openStarter.addEventListener("click", () => {
+  closeProModal(true);
+  savedScrollY = window.scrollY;
+  document.body.style.top = `-${savedScrollY}px`;
   document.body.classList.add("modal-open");
   starterTl.play(0);
 });
 
-function closeStarterModal() {
+function closeStarterModal(skipScrollRestore) {
   gsap.to(starterModal, {
     y: "100%",
     opacity: 0,
@@ -43,12 +49,16 @@ function closeStarterModal() {
     duration: 0.3,
     onComplete: () => {
       document.body.classList.remove("modal-open");
+      document.body.style.top = "";
+      if (!skipScrollRestore) {
+        window.scrollTo(0, savedScrollY);
+      }
     },
   });
 }
 
-closeStarter.addEventListener("click", closeStarterModal);
-starterOverlay.addEventListener("click", closeStarterModal);
+closeStarter.addEventListener("click", () => closeStarterModal());
+starterOverlay.addEventListener("click", () => closeStarterModal());
 
 /* ========= PRO MODAL ========= */
 const proModal = document.getElementById("proModal");
@@ -77,11 +87,14 @@ proTl
   );
 
 openPro.addEventListener("click", () => {
+  closeStarterModal(true);
+  savedScrollY = window.scrollY;
+  document.body.style.top = `-${savedScrollY}px`;
   document.body.classList.add("modal-open");
   proTl.play(0);
 });
 
-function closeProModal() {
+function closeProModal(skipScrollRestore) {
   gsap.to(proModal, {
     y: "100%",
     opacity: 0,
@@ -95,12 +108,16 @@ function closeProModal() {
     duration: 0.3,
     onComplete: () => {
       document.body.classList.remove("modal-open");
+      document.body.style.top = "";
+      if (!skipScrollRestore) {
+        window.scrollTo(0, savedScrollY);
+      }
     },
   });
 }
 
-closePro.addEventListener("click", closeProModal);
-proOverlay.addEventListener("click", closeProModal);
+closePro.addEventListener("click", () => closeProModal());
+proOverlay.addEventListener("click", () => closeProModal());
 
 /* ESC para ambos */
 document.addEventListener("keydown", (e) => {
@@ -108,4 +125,28 @@ document.addEventListener("keydown", (e) => {
     closeStarterModal();
     closeProModal();
   }
+});
+
+/* ========= SECTION TOGGLES (accordion) ========= */
+document.querySelectorAll(".section-toggle").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const content = btn.nextElementSibling;
+    const isOpen = content.classList.contains("is-open");
+
+    const modal = btn.closest(".modal-content");
+    modal.querySelectorAll(".section-content.is-open").forEach((openContent) => {
+      if (openContent !== content) {
+        openContent.classList.remove("is-open");
+        openContent.previousElementSibling.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    if (isOpen) {
+      content.classList.remove("is-open");
+      btn.setAttribute("aria-expanded", "false");
+    } else {
+      content.classList.add("is-open");
+      btn.setAttribute("aria-expanded", "true");
+    }
+  });
 });
