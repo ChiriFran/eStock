@@ -70,7 +70,7 @@ gsap.from(".hero .secondaryBtn", {
 /* hero stats – counter animation */
 const counterData = [
   { prefix: "$", suffix: "M+", target: 50 },
-  { prefix: "+", suffix: "", target: 450 },
+  { prefix: "+", suffix: "", target: 500 },
   { prefix: "", suffix: "", target: 2 },
 ];
 
