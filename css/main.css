@@ -104,7 +104,11 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: linear-gradient(180deg, rgba(4, 115, 240, 0.06), rgba(244, 249, 254, 1));
+  background: linear-gradient(
+    180deg,
+    rgba(4, 115, 240, 0.06),
+    rgba(244, 249, 254, 1)
+  );
 }
 
 .hero::before {
@@ -128,7 +132,11 @@ body {
   bottom: -80px;
   width: 520px;
   height: 520px;
-  background: radial-gradient(circle at 35% 35%, rgba(4, 115, 240, 0.16), transparent 55%);
+  background: radial-gradient(
+    circle at 35% 35%,
+    rgba(4, 115, 240, 0.16),
+    transparent 55%
+  );
   filter: blur(30px);
   opacity: 0.9;
   animation: floatGlow 20s ease-in-out infinite alternate;
@@ -289,7 +297,11 @@ body {
   left: 0;
   right: 0;
   padding: 2rem 1.2rem 1.2rem;
-  background: linear-gradient(180deg, rgba(3, 29, 65, 0) 0%, rgba(3, 29, 65, 0.9) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(3, 29, 65, 0) 0%,
+    rgba(3, 29, 65, 0.9) 100%
+  );
   color: #ffffff;
 }
 
@@ -333,7 +345,11 @@ body {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 55%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08),
+    transparent 55%
+  );
   pointer-events: none;
 }
 
@@ -518,7 +534,6 @@ p.stat-number {
   .clientes-logos img {
     max-width: 120px;
   }
-
 }
 
 /* =====================
@@ -553,7 +568,7 @@ p.stat-number {
   opacity: 0.6;
 }
 
-.hero-stat>* {
+.hero-stat > * {
   position: relative;
   z-index: 2;
   padding: 5% 5% 0;
@@ -589,6 +604,17 @@ p.stat-number {
 
 .hero-services-container:last-of-type {
   padding-bottom: 6%;
+}
+
+.hero-services-title {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-family: var(--ff-titles);
+  font-size: 2rem;
+  font-weight: 900;
+  color: #292827;
+  display: block;
+  margin-bottom: 1rem;
 }
 
 /* =========================================
@@ -1259,8 +1285,13 @@ body.modal-open {
 }
 
 @keyframes floatSoft {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
 }
 
 .scrollItem:nth-child(even) .scrollContent {
@@ -1332,7 +1363,11 @@ body.modal-open {
 
 .scrollItem:nth-child(2) .scrollMedia::before {
   background-image:
-    radial-gradient(circle at center, rgba(108, 92, 231, 0.25), transparent 60%),
+    radial-gradient(
+      circle at center,
+      rgba(108, 92, 231, 0.25),
+      transparent 60%
+    ),
     url("../img/background-triangle-pattern.png");
 }
 
@@ -1845,7 +1880,6 @@ body.modal-open {
 }
 
 @media (max-width: 768px) {
-
   /* ---------- HEADER ---------- */
   .header {
     min-height: calc(var(--header-height-mobile) + env(safe-area-inset-top));
@@ -2041,6 +2075,11 @@ body.modal-open {
     padding: 0 1rem 2rem;
   }
 
+  .hero-services-title {
+    text-align: start;
+    padding-top: 1rem;
+  }
+
   .plan-name {
     font-size: 1.6rem;
   }
@@ -2213,7 +2252,6 @@ body.modal-open {
     gap: 0.75rem;
     font-size: 0.8rem;
   }
-
 }
 
 /* =====================
@@ -2288,7 +2326,9 @@ body.modal-open {
   background: var(--clr-white);
   color: var(--clr-light-blue);
   text-decoration: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .importadores-cta-text .contactoBtn:hover {
