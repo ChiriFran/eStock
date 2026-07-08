@@ -229,10 +229,35 @@ let scrollTween;
 ScrollTrigger.matchMedia({
   // Desktop: scroll horizontal
   "(min-width: 769px)": function () {
+    const scrollSection = document.querySelector(".scrollSection");
     const scrollInner = document.querySelector(".scrollInner");
     const items = gsap.utils.toArray(".scrollItem");
     const dots = document.querySelectorAll(".scrollDot");
+    const startButton = document.querySelector(".scrollStartButton");
+    const nextButton = document.querySelector(".scrollNextButton");
     const totalSlides = items.length;
+
+    function goToSlide(index) {
+      if (index < 0 || index >= totalSlides) return;
+      const totalWidth = scrollInner.scrollWidth - window.innerWidth;
+      const targetProgress = index / (totalSlides - 1);
+      const st = scrollTween.scrollTrigger;
+      const scrollTarget = st.start + targetProgress * totalWidth;
+      window.scrollTo({ top: scrollTarget, behavior: "smooth" });
+    }
+
+    if (startButton && scrollSection) {
+      startButton.addEventListener("click", () => {
+        goToSlide(0);
+      });
+    }
+
+    if (nextButton) {
+      nextButton.addEventListener("click", () => {
+        const activeIndex = Math.round((scrollTween.scrollTrigger.progress || 0) * (totalSlides - 1));
+        goToSlide(Math.min(totalSlides - 1, activeIndex + 1));
+      });
+    }
 
     scrollTween = gsap.to(scrollInner, {
       x: () => -(scrollInner.scrollWidth - window.innerWidth),
@@ -260,12 +285,7 @@ ScrollTrigger.matchMedia({
     // Dot click
     dots.forEach((dot) => {
       dot.addEventListener("click", () => {
-        const index = parseInt(dot.dataset.index);
-        const totalWidth = scrollInner.scrollWidth - window.innerWidth;
-        const targetProgress = index / (totalSlides - 1);
-        const st = scrollTween.scrollTrigger;
-        const scrollTarget = st.start + targetProgress * totalWidth;
-        window.scrollTo({ top: scrollTarget, behavior: "smooth" });
+        goToSlide(parseInt(dot.dataset.index));
       });
     });
 

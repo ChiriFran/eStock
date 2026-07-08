@@ -1475,14 +1475,92 @@ body.modal-open {
   color: #1a1a1a;
 }
 
-.scrollDots {
+.scrollNavigation {
   position: absolute;
-  bottom: 2.5rem;
+  bottom: 2.25rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
-  gap: 0.5rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
   z-index: 10;
+}
+
+.scrollDots {
+  position: static;
+  transform: none;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.scrollControlButtons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.scrollControlButton {
+  width: 3.25rem;
+  height: 2.25rem;
+  border: 2px solid rgba(0, 0, 0, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.257);
+  color: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  position: relative;
+  backdrop-filter: blur(8px);
+}
+
+.scrollControlButton svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.scrollStartButton svg {
+  transform: rotate(-90deg);
+}
+
+.scrollControlButton:hover,
+.scrollControlButton:focus-visible {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.2);
+  color: var(--clr-light-blue);
+  transform: translateY(-2px);
+}
+
+.scrollControlButton::after {
+  position: absolute;
+  bottom: calc(100% + 0.5rem);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: var(--clr-light-blue);
+  color: #ffffff;
+  padding: 0.4rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-family: var(--ff-texts);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.scrollStartButton::after {
+  content: "Ir al comienzo";
+}
+
+.scrollNextButton::after {
+  content: "Avanzar";
+}
+
+.scrollControlButton:hover::after,
+.scrollControlButton:focus-visible::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 .scrollDot {
@@ -1548,8 +1626,8 @@ body.modal-open {
     max-width: 320px;
   }
 
-  .scrollDots {
-    bottom: 1.5rem;
+  .scrollNavigation {
+    display: none;
   }
 
   .scrollDot {
