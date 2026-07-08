@@ -1585,6 +1585,33 @@ body.modal-open {
 
 /* mobile */
 @media (max-width: 900px) {
+  .requirements-section {
+    padding: 4.5rem 1rem;
+  }
+
+  .requirements-container {
+    max-width: 100%;
+  }
+
+  .requirements-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+    max-width: 100%;
+  }
+
+  .requirement-card {
+    min-height: 165px;
+  }
+
+  .requirement-card-inner {
+    min-height: 165px;
+  }
+
+  .requirement-card-front,
+  .requirement-card-back {
+    padding: 0.9rem 0.7rem;
+  }
+
   .scrollItem {
     flex: 0 0 100%;
     min-width: 100%;
@@ -1648,7 +1675,7 @@ body.modal-open {
   background: var(--clr-light-blue);
   color: #ffffff;
   position: relative;
-  z-index: -2;
+  z-index: 100000;
 }
 
 /* imagen decorativa de fondo*/
@@ -1719,48 +1746,120 @@ body.modal-open {
 
 .requirements-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.8rem;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 .requirement-card {
   position: relative;
-  border: 4px solid var(--clr-white);
-  border-radius: 0.5rem;
-  font-family: var(--ff-texts);
-  line-height: 1.4;
-  padding: 2rem;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    border 0.3s ease;
-  backdrop-filter: blur(15px);
+  perspective: 1000px;
+  cursor: pointer;
+  outline: none;
+  min-height: 190px;
+  z-index: 2;
+}
+
+.requirement-card:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 2px;
+  border-radius: 1rem;
+}
+
+.requirement-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 190px;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.requirement-card.flipped .requirement-card-inner {
+  transform: rotateY(180deg);
+}
+
+.requirement-card-front,
+.requirement-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 1rem;
+  padding: 1rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-sizing: border-box;
+}
+
+.requirement-card-front {
+  background: linear-gradient(135deg, #0473f0 0%, #1d74e7 100%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  gap: 0.4rem;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 24px rgba(4, 115, 240, 0.18);
+}
+
+.requirement-card:hover .requirement-card-front {
+  box-shadow: 0 14px 28px rgba(4, 115, 240, 0.24);
+}
+
+.requirement-card-back {
+  background: #ffffff;
+  color: #1a1a2e;
+  transform: rotateY(180deg);
+  padding: 0.9rem 0.8rem;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+.requirement-card-back p {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  opacity: 1;
+  color: #5f6368;
+  margin: 0;
+  font-weight: 700;
 }
 
 .requirement-icon {
   position: absolute;
   top: 0;
-  right: 5%;
+  right: 0.65rem;
   display: inline-block;
-  font-size: 2rem;
+  font-size: 3.8rem;
   font-family: var(--ff-titles);
   font-weight: 900;
-  opacity: 0.5;
-  margin-bottom: 0.5rem;
+  opacity: 0.32;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: -0.03em;
+}
+
+.requirement-bento-icon {
+  font-size: 1.7rem;
+  line-height: 1;
 }
 
 .requirement-card h3 {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 900;
   font-family: var(--ff-titles);
-  margin-bottom: 0.6rem;
+  margin: 0;
+  color: inherit;
 }
 
-.requirement-card p {
-  font-size: 1rem;
-  font-family: var(--ff-texts);
-  line-height: 1.6;
-  opacity: 0.7;
+.requirement-hint {
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.82);
+  opacity: 0.9;
 }
 
 .requirements-footer {
@@ -2331,6 +2430,16 @@ body.modal-open {
   }
 
   /* requerimientos */
+  .requirements-section {
+    padding: 4rem 0.9rem;
+  }
+
+  .requirements-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+    max-width: 100%;
+  }
+
   .requirements-section::after {
     width: 120px;
     height: 120px;
@@ -2338,11 +2447,23 @@ body.modal-open {
 
   .requirement-card {
     line-height: 1.4;
-    padding: 0.5rem 1rem;
+    padding: 0;
+    min-height: 160px;
     transition:
       transform 0.3s ease,
       box-shadow 0.3s ease,
       border 0.3s ease;
+  }
+
+  .requirement-card-inner,
+  .requirement-card-front,
+  .requirement-card-back {
+    min-height: 160px;
+  }
+
+  .requirement-card-front,
+  .requirement-card-back {
+    padding: 0.85rem 0.7rem;
   }
 
   /* preguntas frecuentes */

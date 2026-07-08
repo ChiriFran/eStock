@@ -1,3 +1,30 @@
+function initRequirementCards() {
+  const requirementCards = document.querySelectorAll('.requirements-section .requirement-card');
+  if (!requirementCards.length) return;
+
+  requirementCards.forEach((card) => {
+    card.addEventListener('click', () => {
+      requirementCards.forEach((other) => {
+        if (other !== card) other.classList.remove('flipped');
+      });
+      card.classList.toggle('flipped');
+    });
+
+    card.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        card.click();
+      }
+    });
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initRequirementCards);
+} else {
+  initRequirementCards();
+}
+
 /* Logo – char cascade */
 const logoSplit = new SplitType(".logo", { types: "chars" });
 gsap.from(logoSplit.chars, {
