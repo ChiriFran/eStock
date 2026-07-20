@@ -1259,7 +1259,7 @@ body.modal-open {
 
 .videoMockup img {
   width: 100%;
-  max-width: 520px;
+  max-width: 420px;
   transform: translateY(0);
   transition:
     transform 0.4s ease,
