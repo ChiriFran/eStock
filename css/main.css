@@ -826,6 +826,8 @@ p.stat-number {
 }
 
 body.modal-open {
+  position: fixed;
+  width: 100%;
   overflow: hidden;
   touch-action: none;
 }
@@ -838,6 +840,7 @@ body.modal-open {
   overflow-y: auto;
   font-family: var(--ff-texts);
   scroll-behavior: smooth;
+  z-index: 1000;
 }
 
 /* scrollbar personalizada */
@@ -1676,7 +1679,7 @@ body.modal-open {
   background: var(--clr-light-blue);
   color: #ffffff;
   position: relative;
-  z-index: 100000;
+  z-index: 100;
 }
 
 /* imagen decorativa de fondo*/
