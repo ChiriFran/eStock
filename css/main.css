@@ -335,6 +335,7 @@ body {
 .bento-small .bento-label {
   font-size: 0.6rem;
   padding: 0.25rem 0.55rem;
+  display: none;
 }
 
 .bento-small .bento-caption h3 {
@@ -2406,6 +2407,20 @@ body.modal-open {
 
   .scrollFeatures li {
     justify-content: flex-start;
+  }
+
+  .scrollNavigation {
+    display: flex;
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .scrollControlButtons {
+    display: none;
   }
 
   .scrollDots {

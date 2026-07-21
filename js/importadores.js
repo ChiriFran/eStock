@@ -143,15 +143,26 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  const solMockup = document.querySelector(".solution-mockup");
-  if (solMockup) {
-    gsap.fromTo(solMockup,
-      { opacity: 0, x: 28, scale: 0.96 },
+  const solPreview = document.querySelector(".solution-preview");
+  if (solPreview) {
+    gsap.fromTo(solPreview,
+      { opacity: 0, y: 40, scale: 0.95 },
       {
-        opacity: 1, x: 0, scale: 1, duration: 0.65, ease: "power2.out",
-        scrollTrigger: { trigger: ".solution-visual", start: "top 88%" },
+        opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power3.out",
+        scrollTrigger: { trigger: ".solution-visual", start: "top 85%" },
       }
     );
+
+    const solBadges = solPreview.querySelectorAll(".stat-badge");
+    if (solBadges.length) {
+      gsap.fromTo(solBadges,
+        { opacity: 0, y: 15 },
+        {
+          opacity: 1, y: 0, stagger: 0.1, duration: 0.5, delay: 0.4, ease: "back.out(1.3)",
+          scrollTrigger: { trigger: ".solution-visual", start: "top 85%" },
+        }
+      );
+    }
   }
 
   /* ── Audience Chips ── */
