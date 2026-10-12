@@ -87,6 +87,7 @@
 .article-content li { margin-bottom: 0.5rem; }
 .article-content a { color: var(--blog-blue); font-weight: 700; }
 .article-content img { width: 100%; max-height: 440px; object-fit: cover; margin: 1.5rem 0; border-radius: 0.6rem; }
+.article-content img.article-image-vertical { width: auto; max-width: min(320px, 72%); max-height: 620px; margin: 1.5rem auto; display: block; object-fit: contain; }
 .article-aside { position: sticky; top: 110px; align-self: start; border-left: 2px solid var(--blog-blue); padding-left: 1rem; color: var(--blog-muted); font: 0.9rem/1.5 var(--ff-texts); }
 .article-aside strong { display: block; color: var(--blog-ink); margin-bottom: 0.5rem; }
 .article-cta { margin: 3rem 0; padding: 2rem; border-radius: 0.8rem; background: var(--blog-blue); color: white; }

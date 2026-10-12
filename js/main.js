@@ -96,8 +96,8 @@ gsap.from(".hero .secondaryBtn", {
 
 /* hero stats – counter animation */
 const counterData = [
-  { prefix: "$", suffix: "M+", target: 50 },
-  { prefix: "+", suffix: "", target: 500 },
+  { prefix: "$", suffix: "M+", target: 100 },
+  { prefix: "+", suffix: "", target: 1000 },
   { prefix: "", suffix: "", target: 2 },
 ];
 
