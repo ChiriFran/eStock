@@ -102,7 +102,18 @@ const counterData = [
 ];
 
 document.querySelectorAll(".stat-number").forEach((el, i) => {
-  const { prefix = "", suffix = "", target } = counterData[i] || {};
+  const { prefix: fbPrefix = "", suffix: fbSuffix = "", target: fbTarget } = counterData[i] || {};
+  const prefix = el.dataset.prefix !== undefined ? el.dataset.prefix : fbPrefix;
+  const suffix = el.dataset.suffix !== undefined ? el.dataset.suffix : fbSuffix;
+  const target = el.dataset.target !== undefined ? +el.dataset.target : fbTarget;
+  const finalText = prefix + Math.round(target) + suffix;
+
+  /* fallback: si GSAP no cargó, dejamos el valor final estático */
+  if (typeof gsap === "undefined") {
+    el.textContent = finalText;
+    return;
+  }
+
   el.textContent = prefix + "0" + suffix;
   const obj = { val: 0 };
   gsap.to(obj, {
@@ -111,7 +122,7 @@ document.querySelectorAll(".stat-number").forEach((el, i) => {
     delay: 0.3 + i * 0.12,
     ease: "power2.out",
     onUpdate() {
-      el.textContent = prefix + Math.round(obj.val).toLocaleString("es-AR") + suffix;
+      el.textContent = prefix + Math.round(obj.val) + suffix;
     },
   });
 });
