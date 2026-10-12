@@ -74,6 +74,9 @@ document.addEventListener("DOMContentLoaded", () => {
               onUpdate() {
                 el.textContent = prefix + Math.round(obj.val) + suffix;
               },
+              onComplete() {
+                el.textContent = prefix + target + suffix;
+              },
             });
           });
         },

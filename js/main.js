@@ -124,6 +124,9 @@ document.querySelectorAll(".stat-number").forEach((el, i) => {
     onUpdate() {
       el.textContent = prefix + Math.round(obj.val) + suffix;
     },
+    onComplete() {
+      el.textContent = finalText;
+    },
   });
 });
 

@@ -14,27 +14,89 @@
 
 <body>
   <header class="header">
-    <p class="logo">eStock</p>
+    <a href="./index.html" class="logo">eStock</a>
 
-    <div class="hamburger" id="hamburger">
+    <button
+      class="hamburger"
+      id="hamburger"
+      type="button"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="menu"
+    >
       <span></span>
       <span></span>
       <span></span>
-    </div>
+    </button>
 
-    <nav class="menu" id="menu">
+    <nav class="menu" id="menu" aria-label="Navegación principal">
+      <div class="menu-header">
+        <span class="menu-title">Menú</span>
+        <button
+          class="menu-close"
+          id="menuClose"
+          type="button"
+          aria-label="Cerrar menú"
+        >
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.4"
+            stroke-linecap="round"
+          >
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </button>
+      </div>
+
       <ul class="menu-list">
         <li class="menu-item"><a href="./index.html">Inicio</a></li>
-        <li class="menu-item"><a href="./portfolio.html">Portafolio</a></li>
-        <li class="menu-item">
+        <li class="menu-item menu-item--dropdown" data-dropdown>
+          <button
+            class="menu-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="submenu-soluciones"
+          >
+            Soluciones
+            <svg
+              class="chevron"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </button>
+          <ul class="submenu" id="submenu-soluciones">
+            <li class="submenu-item">
+              <a href="./index.html#planes">Planes Web</a>
+            </li>
+            <li class="submenu-item">
+              <a href="./importadores.html">Importadores</a>
+            </li>
+            <li class="submenu-item">
+              <a href="./portfolio.html" aria-current="page">Portafolio</a>
+            </li>
+            <li class="submenu-item"><a href="./blog/">Blog</a></li>
+          </ul>
+        </li>
+        <li class="menu-item menu-item--cta">
           <a href="https://wa.me/541130504515?text=Hola%20eStock%2C%20quiero%20info%20sobre%20sus%20planes."
-            target="_blank" class="contactoBtn">
+            target="_blank" rel="noopener noreferrer" class="contactoBtn">
             Contactar
           </a>
         </li>
       </ul>
     </nav>
   </header>
+  <div class="menu-overlay" id="menuOverlay"></div>
 
   <main>
     <section class="portfolio-hero">
