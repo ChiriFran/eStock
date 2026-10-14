@@ -2351,8 +2351,13 @@ body.modal-open {
     justify-content: space-between;
   }
 
-  .submenu {
+  .menu-item--dropdown .submenu,
+  .menu-item--dropdown:hover .submenu,
+  .menu-item--dropdown:focus-within .submenu,
+  .menu-item--dropdown.open .submenu {
     position: static;
+    top: auto;
+    left: auto;
     min-width: 0;
     display: none;
     opacity: 1;
