@@ -301,10 +301,25 @@ ScrollTrigger.matchMedia({
     }
 
     function updateDots() {
-      const index = getClosestIndex();
+      const pos = dragging ? clampScroll(targetScroll) : scrollInner.scrollLeft;
+      const index = dragging ? resolveTargetIndex(pos) : getClosestIndex(pos);
       if (index === activeIndex) return;
       activeIndex = index;
       dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
+    }
+
+    // Umbral de 30% del arrastre para cambiar a la tarjeta vecina
+    function resolveTargetIndex(pos) {
+      const startIndex = getClosestIndex(startScroll);
+      const threshold = scrollInner.clientWidth * 0.3;
+      const delta = pos - startScroll;
+      let index = getClosestIndex(pos);
+      if (delta >= threshold && index <= startIndex) {
+        index = Math.min(totalSlides - 1, startIndex + 1);
+      } else if (delta <= -threshold && index >= startIndex) {
+        index = Math.max(0, startIndex - 1);
+      }
+      return index;
     }
 
     function stopAnimations() {
@@ -348,10 +363,9 @@ ScrollTrigger.matchMedia({
     }
 
     function settleAfterDrag() {
-      const intended = clampScroll(targetScroll);
-      const index = getClosestIndex(intended);
+      const index = resolveTargetIndex(clampScroll(targetScroll));
       // Arranca desde donde está y frena de forma continua (sin frenar de golpe)
-      animateScroll(items[index].offsetLeft, 0.85, "power2.out");
+      animateScroll(items[index].offsetLeft, 1.1, "sine.out");
     }
 
     function playItem(item) {
@@ -432,12 +446,12 @@ ScrollTrigger.matchMedia({
     const onPointerUp = () => {
       if (!dragging) return;
       dragging = false;
-      scrollInner.classList.remove("is-dragging");
       if (dragged) {
         settleAfterDrag();
       } else {
         stopAnimations();
       }
+      scrollInner.classList.remove("is-dragging");
       setTimeout(() => {
         dragged = false;
       }, 0);
@@ -446,8 +460,8 @@ ScrollTrigger.matchMedia({
     const onPointerCancel = () => {
       if (!dragging) return;
       dragging = false;
-      scrollInner.classList.remove("is-dragging");
       settleAfterDrag();
+      scrollInner.classList.remove("is-dragging");
     };
 
     const onClickCapture = (e) => {
