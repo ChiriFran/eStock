@@ -1,5 +1,27 @@
 const BLOG_POSTS = [
   {
+    slug: "marketing-digital-y-redes-sociales-para-tu-negocio",
+    title: "Marketing digital y redes sociales con mkt.digital_carla: el complemento ideal para tu ecommerce",
+    category: "Marketing digital",
+    excerpt: "Sumá estrategia de redes, contenido y publicidad a tu tienda online para atraer más clientes y vender mejor, junto al equipo de mkt.digital.",
+    date: "2026-10-15",
+    dateLabel: "15 de octubre de 2026",
+    readingTime: "6 min de lectura",
+    image: "img/carla-logo.webp",
+    tags: ["marketing digital", "redes sociales", "publicidad"],
+  },
+  {
+    slug: "bawax-club-comunidad-suscripciones-y-escalado-en-ecommerce",
+    title: "BAWAX Club: convertir una comunidad en una experiencia dentro de tu ecommerce",
+    category: "Casos de éxito",
+    excerpt: "Caso BAWAX: suscripciones automáticas, Mercado Pago y beneficios exclusivos integrados a su tienda online. Más de 60 miembros en solo 3 días.",
+    date: "2026-10-15",
+    dateLabel: "15 de octubre de 2026",
+    readingTime: "5 min de lectura",
+    image: "img/bawax-club.webp",
+    tags: ["caso de exito", "suscripciones", "ecommerce", "comunidad"],
+  },
+  {
     slug: "como-organizar-el-stock-de-un-ecommerce",
     title: "Cómo organizar el stock de tu ecommerce y evitar errores de inventario",
     category: "Gestión de stock",
@@ -45,20 +67,27 @@ const BLOG_POSTS = [
   },
 ];
 
+function shortRead(post) {
+  return post.readingTime.replace(" de lectura", "");
+}
+
 function postCard(post) {
   const inBlog = window.location.pathname.includes("/blog/");
   const assetPrefix = inBlog ? "../" : "./";
   const postPrefix = inBlog ? "./posts/" : "./blog/posts/";
-  return `<article class="blog-card">
-    <a href="${postPrefix}${post.slug}.html"><img class="blog-card-image" src="${assetPrefix}${post.image}" alt="${post.title}" loading="lazy"></a>
-    <div class="blog-card-body">
-      <span class="blog-card-category">${post.category}</span>
-      <h3><a href="${postPrefix}${post.slug}.html">${post.title}</a></h3>
-      <p class="blog-card-excerpt">${post.excerpt}</p>
-      <div class="blog-card-meta"><time datetime="${post.date}">${post.dateLabel}</time><span aria-hidden="true">·</span><span>${post.readingTime}</span></div>
-      <a class="blog-card-link" href="${postPrefix}${post.slug}.html">Leer artículo <span aria-hidden="true">→</span></a>
+  const href = `${postPrefix}${post.slug}.html`;
+  return `<a class="post-card" href="${href}">
+    <div class="post-card__top">
+      <span class="blog-tag">${post.category}</span>
+      <span class="post-card__thumb"><img src="${assetPrefix}${post.image}" alt="" loading="lazy"></span>
     </div>
-  </article>`;
+    <h3 class="post-card__title">${post.title}</h3>
+    <p class="post-card__excerpt">${post.excerpt}</p>
+    <div class="post-card__foot">
+      <span class="blog-meta"><time datetime="${post.date}">${post.dateLabel}</time><span aria-hidden="true">·</span><span>${shortRead(post)}</span></span>
+      <span class="post-card__arrow" aria-hidden="true">→</span>
+    </div>
+  </a>`;
 }
 
 function renderCards(container, posts) {
@@ -67,29 +96,30 @@ function renderCards(container, posts) {
 
 function homeFeaturedCard(post, assetPrefix, postPrefix) {
   const href = `${postPrefix}${post.slug}.html`;
-  return `<article class="blog-card blog-card--featured">
-    <a class="blog-card-media" href="${href}" tabindex="-1" aria-hidden="true"><img class="blog-card-image" src="${assetPrefix}${post.image}" alt="" loading="lazy"></a>
-    <div class="blog-card-body">
-      <span class="blog-card-category">${post.category}</span>
-      <h3><a href="${href}">${post.title}</a></h3>
-      <p class="blog-card-excerpt">${post.excerpt}</p>
-      <div class="blog-card-meta"><time datetime="${post.date}">${post.dateLabel}</time><span aria-hidden="true">·</span><span>${post.readingTime}</span></div>
-      <a class="blog-card-link" href="${href}">Leer artículo <span aria-hidden="true">→</span></a>
+  return `<article class="blog-featured">
+    <div class="blog-featured__body">
+      <span class="blog-tag">${post.category}</span>
+      <h3 class="blog-featured__title"><a href="${href}">${post.title}</a></h3>
+      <p class="blog-featured__excerpt">${post.excerpt}</p>
+      <div class="blog-featured__foot">
+        <span class="blog-meta"><time datetime="${post.date}">${post.dateLabel}</time><span aria-hidden="true">·</span><span>${shortRead(post)}</span></span>
+        <a class="blog-link" href="${href}">Leer artículo <span aria-hidden="true">→</span></a>
+      </div>
     </div>
+    <a class="blog-featured__media" href="${href}" tabindex="-1" aria-hidden="true"><img src="${assetPrefix}${post.image}" alt="" loading="lazy"></a>
   </article>`;
 }
 
 function homeSideCard(post, assetPrefix, postPrefix) {
   const href = `${postPrefix}${post.slug}.html`;
-  return `<article class="blog-card blog-card--side">
-    <a class="blog-card-media" href="${href}" tabindex="-1" aria-hidden="true"><img class="blog-card-image" src="${assetPrefix}${post.image}" alt="" loading="lazy"></a>
-    <div class="blog-card-body">
-      <span class="blog-card-category">${post.category}</span>
-      <h3><a href="${href}">${post.title}</a></h3>
-      <div class="blog-card-meta"><time datetime="${post.date}">${post.dateLabel}</time><span aria-hidden="true">·</span><span>${post.readingTime}</span></div>
-      <a class="blog-card-link" href="${href}">Leer artículo <span aria-hidden="true">→</span></a>
+  return `<a class="blog-side" href="${href}">
+    <div class="blog-side__body">
+      <span class="blog-tag">${post.category}</span>
+      <h3 class="blog-side__title">${post.title}</h3>
+      <span class="blog-meta"><time datetime="${post.date}">${post.dateLabel}</time><span aria-hidden="true">·</span><span>${shortRead(post)}</span></span>
     </div>
-  </article>`;
+    <span class="blog-side__thumb"><img src="${assetPrefix}${post.image}" alt="" loading="lazy"></span>
+  </a>`;
 }
 
 function renderHomeFeatured(container, posts) {
