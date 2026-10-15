@@ -268,7 +268,7 @@ gsap.delayedCall(0.1, () => ScrollTrigger.refresh());
 let scrollTween;
 
 ScrollTrigger.matchMedia({
-  // Desktop: scroll horizontal
+  // Desktop: scroll horizontal nativo dentro del contenedor (scroll vertical libre)
   "(min-width: 769px)": function () {
     const scrollSection = document.querySelector(".scrollSection");
     const scrollInner = document.querySelector(".scrollInner");
@@ -277,51 +277,190 @@ ScrollTrigger.matchMedia({
     const startButton = document.querySelector(".scrollStartButton");
     const nextButton = document.querySelector(".scrollNextButton");
     const totalSlides = items.length;
+    const played = new Set();
+    let activeIndex = 0;
+    let dragging = false;
+    let dragged = false;
+    let startX = 0;
+    let startScroll = 0;
+    let targetScroll = 0;
+    let rafId = null;
+    let settleTween = null;
+
+    function getClosestIndex(pos = scrollInner.scrollLeft) {
+      let closest = 0;
+      let minDiff = Infinity;
+      items.forEach((item, i) => {
+        const diff = Math.abs(item.offsetLeft - pos);
+        if (diff < minDiff) {
+          minDiff = diff;
+          closest = i;
+        }
+      });
+      return closest;
+    }
+
+    function updateDots() {
+      const index = getClosestIndex();
+      if (index === activeIndex) return;
+      activeIndex = index;
+      dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
+    }
+
+    function stopAnimations() {
+      if (rafId) {
+        cancelAnimationFrame(rafId);
+        rafId = null;
+      }
+      if (settleTween) {
+        settleTween.kill();
+        settleTween = null;
+      }
+      scrollInner.classList.remove("is-settling");
+    }
+
+    function clampScroll(value) {
+      const max = scrollInner.scrollWidth - scrollInner.clientWidth;
+      return Math.max(0, Math.min(max, value));
+    }
+
+    function animateScroll(target, duration, ease) {
+      stopAnimations();
+      scrollInner.classList.add("is-settling");
+      const proxy = { x: scrollInner.scrollLeft };
+      settleTween = gsap.to(proxy, {
+        x: target,
+        duration,
+        ease,
+        onUpdate: () => {
+          scrollInner.scrollLeft = proxy.x;
+        },
+        onComplete: () => {
+          settleTween = null;
+          scrollInner.classList.remove("is-settling");
+        },
+      });
+    }
 
     function goToSlide(index) {
       if (index < 0 || index >= totalSlides) return;
-      const totalWidth = scrollInner.scrollWidth - window.innerWidth;
-      const targetProgress = index / (totalSlides - 1);
-      const st = scrollTween.scrollTrigger;
-      const scrollTarget = st.start + targetProgress * totalWidth;
-      window.scrollTo({ top: scrollTarget, behavior: "smooth" });
+      animateScroll(items[index].offsetLeft, 1, "power2.inOut");
     }
 
-    if (startButton && scrollSection) {
-      startButton.addEventListener("click", () => {
-        goToSlide(0);
+    function settleAfterDrag() {
+      const intended = clampScroll(targetScroll);
+      const index = getClosestIndex(intended);
+      // Arranca desde donde está y frena de forma continua (sin frenar de golpe)
+      animateScroll(items[index].offsetLeft, 0.85, "power2.out");
+    }
+
+    function playItem(item) {
+      const tag = item.querySelector(".scrollTag");
+      const title = item.querySelector(".scrollTitle");
+      const content = item.querySelector(".scrollContent");
+      const features = item.querySelectorAll(".scrollFeatures li");
+      const media = item.querySelector(".scrollMedia img");
+
+      gsap.timeline()
+        .to(tag, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" })
+        .to(title, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, "-=0.3")
+        .to(content, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, "-=0.35")
+        .to(features, { opacity: 1, y: 0, stagger: 0.05, duration: 0.4, ease: "power2.out" }, "-=0.35")
+        .to(media, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, "-=0.4");
+    }
+
+    function revealVisible() {
+      if (scrollSection.getBoundingClientRect().top > window.innerHeight * 0.85) return;
+      const limit = scrollInner.scrollLeft + scrollInner.clientWidth * 0.75;
+      items.forEach((item, i) => {
+        if (played.has(i) || item.offsetLeft >= limit) return;
+        played.add(i);
+        playItem(item);
       });
+      if (played.size === totalSlides) window.removeEventListener("scroll", revealVisible);
     }
 
-    if (nextButton) {
-      nextButton.addEventListener("click", () => {
-        const activeIndex = Math.round((scrollTween.scrollTrigger.progress || 0) * (totalSlides - 1));
-        goToSlide(Math.min(totalSlides - 1, activeIndex + 1));
-      });
-    }
-
-    scrollTween = gsap.to(scrollInner, {
-      x: () => -(scrollInner.scrollWidth - window.innerWidth),
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".scrollSection",
-        start: "top top",
-        end: () => `+=${scrollInner.scrollWidth - window.innerWidth}`,
-        scrub: 2.5,
-        pin: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        snap: {
-          snapTo: 1 / (totalSlides - 1),
-          duration: { min: 0.5, max: 0.8 },
-          ease: "power3.inOut",
-        },
-        onUpdate: (self) => {
-          const activeIndex = Math.round(self.progress * (totalSlides - 1));
-          dots.forEach((dot, i) => dot.classList.toggle("active", i === activeIndex));
-        },
-      },
+    // Estado inicial oculto
+    items.forEach((item) => {
+      gsap.set(item.querySelector(".scrollTag"), { opacity: 0, y: 10 });
+      gsap.set(item.querySelector(".scrollTitle"), { opacity: 0, y: 15 });
+      gsap.set(item.querySelector(".scrollContent"), { opacity: 0, y: 20 });
+      gsap.set(item.querySelectorAll(".scrollFeatures li"), { opacity: 0, y: 10 });
+      gsap.set(item.querySelector(".scrollMedia img"), { opacity: 0, y: 20 });
     });
+
+    const onInnerScroll = () => {
+      updateDots();
+      revealVisible();
+    };
+    scrollInner.addEventListener("scroll", onInnerScroll, { passive: true });
+    window.addEventListener("scroll", revealVisible, { passive: true });
+
+    // Arrastrar con el mouse para deslizar las tarjetas (con suavizado)
+    function tickDrag() {
+      const current = scrollInner.scrollLeft;
+      const diff = targetScroll - current;
+      if (Math.abs(diff) < 0.5) {
+        scrollInner.scrollLeft = targetScroll;
+        rafId = null;
+        return;
+      }
+      scrollInner.scrollLeft = current + diff * 0.18;
+      rafId = requestAnimationFrame(tickDrag);
+    }
+
+    const onPointerDown = (e) => {
+      if (e.pointerType !== "mouse" || e.button !== 0) return;
+      stopAnimations();
+      dragging = true;
+      dragged = false;
+      startX = e.clientX;
+      startScroll = scrollInner.scrollLeft;
+      targetScroll = startScroll;
+      scrollInner.classList.add("is-dragging");
+      e.preventDefault();
+    };
+
+    const onPointerMove = (e) => {
+      if (!dragging) return;
+      const dx = e.clientX - startX;
+      if (Math.abs(dx) > 4) dragged = true;
+      targetScroll = clampScroll(startScroll - dx);
+      if (rafId === null) rafId = requestAnimationFrame(tickDrag);
+    };
+
+    const onPointerUp = () => {
+      if (!dragging) return;
+      dragging = false;
+      scrollInner.classList.remove("is-dragging");
+      if (dragged) {
+        settleAfterDrag();
+      } else {
+        stopAnimations();
+      }
+      setTimeout(() => {
+        dragged = false;
+      }, 0);
+    };
+
+    const onPointerCancel = () => {
+      if (!dragging) return;
+      dragging = false;
+      scrollInner.classList.remove("is-dragging");
+      settleAfterDrag();
+    };
+
+    const onClickCapture = (e) => {
+      if (!dragged) return;
+      e.preventDefault();
+      e.stopPropagation();
+    };
+
+    scrollInner.addEventListener("pointerdown", onPointerDown);
+    window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointerup", onPointerUp);
+    window.addEventListener("pointercancel", onPointerCancel);
+    scrollInner.addEventListener("click", onClickCapture, true);
 
     // Dot click
     dots.forEach((dot) => {
@@ -330,34 +469,33 @@ ScrollTrigger.matchMedia({
       });
     });
 
-    // Animaciones de entrada
-    items.forEach((item) => {
-      const tag = item.querySelector(".scrollTag");
-      const title = item.querySelector(".scrollTitle");
-      const content = item.querySelector(".scrollContent");
-      const features = item.querySelectorAll(".scrollFeatures li");
-      const media = item.querySelector(".scrollMedia img");
+    if (startButton) {
+      startButton.addEventListener("click", () => {
+        goToSlide(0);
+      });
+    }
 
-      gsap.set(tag, { opacity: 0, y: 10 });
-      gsap.set(title, { opacity: 0, y: 15 });
-      gsap.set(content, { opacity: 0, y: 20 });
-      gsap.set(features, { opacity: 0, y: 10 });
-      gsap.set(media, { opacity: 0, y: 20 });
+    if (nextButton) {
+      nextButton.addEventListener("click", () => {
+        goToSlide(Math.min(totalSlides - 1, activeIndex + 1));
+      });
+    }
 
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: item,
-          containerAnimation: scrollTween,
-          start: "left 70%",
-          toggleActions: "play none none none",
-        },
-      })
-        .to(tag, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" })
-        .to(title, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, "-=0.3")
-        .to(content, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, "-=0.35")
-        .to(features, { opacity: 1, y: 0, stagger: 0.05, duration: 0.4, ease: "power2.out" }, "-=0.35")
-        .to(media, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, "-=0.4");
-    });
+    revealVisible();
+
+    return function () {
+      stopAnimations();
+      scrollInner.removeEventListener("scroll", onInnerScroll);
+      window.removeEventListener("scroll", revealVisible);
+      scrollInner.removeEventListener("pointerdown", onPointerDown);
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerup", onPointerUp);
+      window.removeEventListener("pointercancel", onPointerCancel);
+      scrollInner.removeEventListener("click", onClickCapture, true);
+      scrollInner.classList.remove("is-dragging");
+      scrollInner.scrollLeft = 0;
+      played.clear();
+    };
   },
 
   // Mobile: slider con touch swipe
