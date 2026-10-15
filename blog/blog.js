@@ -65,8 +65,46 @@ function renderCards(container, posts) {
   if (container) container.innerHTML = posts.map(postCard).join("");
 }
 
+function homeFeaturedCard(post, assetPrefix, postPrefix) {
+  const href = `${postPrefix}${post.slug}.html`;
+  return `<article class="blog-card blog-card--featured">
+    <a class="blog-card-media" href="${href}" tabindex="-1" aria-hidden="true"><img class="blog-card-image" src="${assetPrefix}${post.image}" alt="" loading="lazy"></a>
+    <div class="blog-card-body">
+      <span class="blog-card-category">${post.category}</span>
+      <h3><a href="${href}">${post.title}</a></h3>
+      <p class="blog-card-excerpt">${post.excerpt}</p>
+      <div class="blog-card-meta"><time datetime="${post.date}">${post.dateLabel}</time><span aria-hidden="true">·</span><span>${post.readingTime}</span></div>
+      <a class="blog-card-link" href="${href}">Leer artículo <span aria-hidden="true">→</span></a>
+    </div>
+  </article>`;
+}
+
+function homeSideCard(post, assetPrefix, postPrefix) {
+  const href = `${postPrefix}${post.slug}.html`;
+  return `<article class="blog-card blog-card--side">
+    <a class="blog-card-media" href="${href}" tabindex="-1" aria-hidden="true"><img class="blog-card-image" src="${assetPrefix}${post.image}" alt="" loading="lazy"></a>
+    <div class="blog-card-body">
+      <span class="blog-card-category">${post.category}</span>
+      <h3><a href="${href}">${post.title}</a></h3>
+      <div class="blog-card-meta"><time datetime="${post.date}">${post.dateLabel}</time><span aria-hidden="true">·</span><span>${post.readingTime}</span></div>
+      <a class="blog-card-link" href="${href}">Leer artículo <span aria-hidden="true">→</span></a>
+    </div>
+  </article>`;
+}
+
+function renderHomeFeatured(container, posts) {
+  if (!container) return;
+  const inBlog = window.location.pathname.includes("/blog/");
+  const assetPrefix = inBlog ? "../" : "./";
+  const postPrefix = inBlog ? "./posts/" : "./blog/posts/";
+  const [featured, ...rest] = posts;
+  container.innerHTML =
+    homeFeaturedCard(featured, assetPrefix, postPrefix) +
+    `<div class="home-blog-sides">${rest.map((post) => homeSideCard(post, assetPrefix, postPrefix)).join("")}</div>`;
+}
+
 function initBlog() {
-  renderCards(document.querySelector("[data-featured-posts]"), BLOG_POSTS.slice(0, 3));
+  renderHomeFeatured(document.querySelector("[data-featured-posts]"), BLOG_POSTS.slice(0, 3));
   const grid = document.querySelector("[data-post-grid]");
   if (!grid) return;
   const filters = document.querySelector("[data-blog-filters]");

@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/normalice.css" />
-    <link rel="stylesheet" href="./css/main.css?v=20261015" />
-    <link rel="stylesheet" href="./blog/blog.css?v=20261015" />
+    <link rel="stylesheet" href="./css/main.css?v=20261015d" />
+    <link rel="stylesheet" href="./blog/blog.css?v=20261016" />
 
     <link rel="icon" href="./img/eStockFavicon.png" />
     <title>eStock — Tu tienda online, lista para vender</title>
@@ -659,8 +659,21 @@
             rel="noopener noreferrer"
           >
             <img
+              class="cliente-logo--dark"
               src="./img/logoMobile.png"
               alt="Detroit Classic Galery Record"
+            />
+          </a>
+          <a
+            href="https://mixingnuts.com.ar/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="cliente-badge">Nuevo lanzamiento</span>
+                        <img
+              class="cliente-logo--color"
+              src="./img/mixinglogo.webp"
+              alt="Mixing Nuts"
             />
           </a>
         </div>
@@ -689,14 +702,16 @@
 
     <section class="home-blog-section" aria-labelledby="home-blog-title">
       <div class="home-blog-header">
-        <div>
-          <p class="eyebrow">Guía para ecommerce</p>
+        <div class="home-blog-heading">
+          <p class="home-blog-eyebrow">Guía para ecommerce</p>
           <h2 id="home-blog-title">Recursos para hacer crecer tu ecommerce</h2>
         </div>
-        <p>Ideas prácticas sobre ventas online, stock y automatización para tomar mejores decisiones en tu negocio.</p>
+        <div class="home-blog-intro">
+          <p>Ideas prácticas sobre ventas online, stock y automatización para tomar mejores decisiones en tu negocio.</p>
+          <a class="home-blog-all" href="./blog/">Ver todos los artículos <span aria-hidden="true">→</span></a>
+        </div>
       </div>
-      <div class="blog-card-grid blog-card-grid--featured" data-featured-posts></div>
-      <a class="blog-section-link" href="./blog/">Ver todos los artículos <span aria-hidden="true">→</span></a>
+      <div class="home-blog-grid" data-featured-posts></div>
     </section>
 
     <section class="faqSection" id="faq">
@@ -1264,6 +1279,6 @@
     <script src="./js/modal.js"></script>
     <script src="./js/sliderModal.js"></script>
     <script src="./js/acordeonFaq.js" defer></script>
-    <script src="./blog/blog.js" defer></script>
+    <script src="./blog/blog.js?v=20261016" defer></script>
   </body>
 </html>
