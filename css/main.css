@@ -1439,29 +1439,34 @@ body.modal-open {
   display: flex;
   flex-wrap: nowrap;
   height: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-snap-type: x mandatory;
-  overscroll-behavior-x: contain;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  -webkit-overflow-scrolling: touch;
-  cursor: grab;
   will-change: transform;
 }
 
-.scrollInner::-webkit-scrollbar {
-  display: none;
-}
+@media (min-width: 769px) {
+  .scrollInner {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+  }
 
-.scrollInner.is-dragging {
-  cursor: grabbing;
-  scroll-snap-type: none;
-  user-select: none;
-}
+  .scrollInner::-webkit-scrollbar {
+    display: none;
+  }
 
-.scrollInner.is-settling {
-  scroll-snap-type: none;
+  .scrollInner.is-dragging {
+    cursor: grabbing;
+    scroll-snap-type: none;
+    user-select: none;
+  }
+
+  .scrollInner.is-settling {
+    scroll-snap-type: none;
+  }
 }
 
 .scrollItem {
@@ -1474,7 +1479,12 @@ body.modal-open {
   gap: 4vw;
   min-height: 100vh;
   position: relative;
-  scroll-snap-align: start;
+}
+
+@media (min-width: 769px) {
+  .scrollItem {
+    scroll-snap-align: start;
+  }
 }
 
 .scrollItem h2 {
@@ -2600,9 +2610,6 @@ body.modal-open {
     flex-direction: row;
     flex-wrap: nowrap;
     padding: 0;
-    overflow: hidden;
-    cursor: auto;
-    scroll-snap-type: none;
     transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
   }
 
